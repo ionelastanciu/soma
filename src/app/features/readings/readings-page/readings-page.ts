@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgFor, NgIf, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ShortTextPipe } from '../../../shared/pipes/short-text.pipe';
+
 
 interface Reading {
   id: number;
@@ -14,14 +16,13 @@ interface Reading {
 @Component({
   selector: 'app-readings-page',
   standalone: true,
-  imports: [NgFor, NgIf, NgClass, FormsModule],
+  imports: [NgFor, NgIf, NgClass, FormsModule, ShortTextPipe],
   templateUrl: './readings-page.html',
   styleUrl: './readings-page.css',
 })
 export class ReadingsPage {
   title = 'Lecturas y citas';
 
-  // filtro simple por texto
   search = '';
 
   readings: Reading[] = [

@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor, NgClass, DatePipe } from '@angular/common';
 import { JournalService, JournalEntry } from '../../../core/journal.service';
+import { ShortTextPipe } from '../../../shared/pipes/short-text.pipe';
+
 
 @Component({
   selector: 'app-journal-page',
   standalone: true,
-  imports: [FormsModule, NgIf, NgFor, NgClass, DatePipe],
+  imports: [FormsModule, NgIf, NgFor, NgClass, DatePipe, ShortTextPipe],
   templateUrl: './journal-page.html',
   styleUrl: './journal-page.css'
 })
