@@ -1,0 +1,29 @@
+<section class="card">
+  <h1>Check-in emocional</h1>
+  <p class="muted">Selecciona cómo te sientes hoy para recibir recomendaciones personalizadas.</p>
+
+  <!-- Selector de estado -->
+  <div class="selector">
+    <label for="estado">¿Cómo te sientes?</label>
+
+    <select id="estado" [(ngModel)]="estadoActual">
+      <option value="">Seleccionar estado…</option>
+      <option *ngFor="let e of estados" [value]="e">{{ e }}</option>
+    </select>
+
+    <button (click)="registrar()" [disabled]="!estadoActual.trim()">
+      Registrar estado ✨
+    </button>
+  </div>
+
+  <!-- Mensaje si no hay historial -->
+  <p *ngIf="historial.length === 0" class="muted">Aún no has registrado ningún estado.</p>
+
+  <!-- Listado de historial -->
+  <ul class="historial" *ngIf="historial.length > 0">
+    <li *ngFor="let h of historial">
+      <span class="estado">{{ h.estado }}</span>
+      <span class="fecha">{{ h.fecha | date:'short' }}</span>
+    </li>
+  </ul>
+</section>
