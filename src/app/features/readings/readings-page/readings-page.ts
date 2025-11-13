@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NgFor, NgIf, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ShortTextPipe } from '../../../shared/pipes/short-text.pipe';
-
 
 interface Reading {
   id: number;
@@ -16,7 +14,7 @@ interface Reading {
 @Component({
   selector: 'app-readings-page',
   standalone: true,
-  imports: [NgFor, NgIf, NgClass, FormsModule, ShortTextPipe],
+  imports: [NgFor, NgIf, NgClass, FormsModule],
   templateUrl: './readings-page.html',
   styleUrl: './readings-page.css',
 })
