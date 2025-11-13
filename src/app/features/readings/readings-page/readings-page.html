@@ -1,0 +1,51 @@
+<section class="card">
+  <h1>{{ title }}</h1>
+  <p class="muted">
+    Pequeñas lecturas y frases para acompañar tu estado emocional.
+  </p>
+
+  <!-- Buscador -->
+  <div class="toolbar">
+    <input
+      type="text"
+      [(ngModel)]="search"
+      placeholder="Buscar por título, autor o estado (estrés, gratitud, etc.)"
+    />
+    <span class="muted" *ngIf="search">
+      Filtro activo: "{{ search }}"
+    </span>
+  </div>
+
+  <!-- Estado vacío -->
+  <p class="muted" *ngIf="filteredReadings.length === 0">
+    No hay lecturas que coincidan con tu búsqueda.
+  </p>
+
+  <!-- Listado -->
+  <ul class="reading-list" *ngIf="filteredReadings.length > 0">
+    <li
+      class="reading-row"
+      *ngFor="let r of filteredReadings"
+      [ngClass]="{ favored: r.favorited }"
+    >
+      <div class="meta">
+        <div>
+          <strong>{{ r.title }}</strong>
+          <span class="tag"> · {{ r.moodTag }}</span>
+        </div>
+        <div class="sub">
+          <span>{{ r.author }}</span>
+          <span> · {{ r.minutes }} min</span>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="fav-btn"
+        (click)="toggleFavorite(r.id)"
+      >
+        {{ r.favorited ? '★ Favorito' : '☆ Guardar' }}
+      </button>
+    </li>
+  </ul>
+</section>
