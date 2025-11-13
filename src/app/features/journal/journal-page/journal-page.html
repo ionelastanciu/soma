@@ -1,0 +1,77 @@
+<section class="card">
+  <h1>Diario emocional</h1>
+  <p class="muted">
+    Escribe brevemente cómo te sientes hoy. No tiene que ser perfecto, solo honesto.
+  </p>
+
+  <form class="journal-form" (ngSubmit)="addEntry()">
+    <div class="field">
+      <label for="mood">Estado principal</label>
+      <select
+        id="mood"
+        [(ngModel)]="mood"
+        name="mood"
+        required
+      >
+        <option value="">Seleccionar estado…</option>
+        <option *ngFor="let m of moods" [value]="m">{{ m }}</option>
+      </select>
+      <small class="error" *ngIf="!mood">
+        Selecciona cómo te sientes.
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="text">Entrada del día</label>
+      <textarea
+        id="text"
+        [(ngModel)]="text"
+        name="text"
+        rows="4"
+        placeholder="Por ejemplo: qué ha pasado hoy, cómo te ha afectado, qué te gustaría recordarte..."
+        required
+      ></textarea>
+      <small class="error" *ngIf="!text.trim()">
+        Escribe al menos una frase.
+      </small>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="!mood || !text.trim()"
+    >
+      Guardar entrada
+    </button>
+  </form>
+
+  <p class="muted" *ngIf="entries.length === 0">
+    Aún no has escrito nada en tu diario. Tu primera entrada puede ser tan simple como:
+    “Hoy he decidido empezar a escucharme”.
+  </p>
+
+  <ul class="entries" *ngIf="entries.length > 0">
+    <li
+      *ngFor="let e of entries"
+      [ngClass]="{ important: e.important }"
+    >
+      <header class="entry-header">
+        <div>
+          <span class="date">{{ e.date | date: 'short' }}</span>
+          <span class="mood-tag">{{ e.mood }}</span>
+        </div>
+        <div class="entry-actions">
+          <button type="button" (click)="toggleImportant(e)">
+            {{ e.important ? '★ Importante' : '☆ Marcar' }}
+          </button>
+          <button type="button" class="danger" (click)="removeEntry(e.id)">
+            Eliminar
+          </button>
+        </div>
+      </header>
+
+      <p class="text">
+        {{ e.text }}
+      </p>
+    </li>
+  </ul>
+</section>

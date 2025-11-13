@@ -4,7 +4,6 @@
     Pequeñas lecturas y frases para acompañar tu estado emocional.
   </p>
 
-  <!-- Buscador -->
   <div class="toolbar">
     <input
       type="text"
@@ -16,12 +15,10 @@
     </span>
   </div>
 
-  <!-- Estado vacío -->
   <p class="muted" *ngIf="filteredReadings.length === 0">
     No hay lecturas que coincidan con tu búsqueda.
   </p>
 
-  <!-- Listado -->
   <ul class="reading-list" *ngIf="filteredReadings.length > 0">
     <li
       class="reading-row"

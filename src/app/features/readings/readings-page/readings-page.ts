@@ -6,8 +6,8 @@ interface Reading {
   id: number;
   title: string;
   author: string;
-  moodTag: string;   // para qué estado encaja mejor
-  minutes: number;   // tiempo de lectura
+  moodTag: string;   
+  minutes: number;  
   favorited: boolean;
 }
 
