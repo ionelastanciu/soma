@@ -1,66 +1,42 @@
-.card {
-  background: #161a22;
-  border: 1px solid #1f2530;
-  padding: 20px;
-  border-radius: 12px;
-  color: #eaeef7;
-}
-
-.muted {
-  color: #8f9bb3;
-}
-
-.selector {
+.field {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin: 20px 0;
+  gap: 6px;
+  margin-bottom: 16px;
 }
 
-select {
+.label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.error {
+  color: #ff8a8a;
+  font-size: 0.8rem;
+}
+
+.selector select,
+textarea {
   padding: 10px;
-  border-radius: 8px;
-  background: #0f1115;
-  color: #eaeef7;
-  border: 1px solid #2a3242;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: white;
 }
 
-button {
-  width: fit-content;
-  padding: 8px 14px;
-  background: #242b38;
-  border: 1px solid #2a3242;
-  border-radius: 8px;
-  color: #eaeef7;
-  cursor: pointer;
+.selector select:focus,
+textarea:focus {
+  outline: 1px solid var(--accent);
 }
 
-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.historial {
-  list-style: none;
-  padding: 0;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-li {
+.row {
   display: flex;
   justify-content: space-between;
-  background: #1b1f29;
-  padding: 10px;
-  border-radius: 8px;
+  width: 100%;
 }
 
-.estado {
-  font-weight: 600;
-}
-
-.fecha {
-  color: #8f9bb3;
+.nota {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }

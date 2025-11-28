@@ -10,6 +10,8 @@ import { NgIf, NgFor, DatePipe } from '@angular/common';
   styleUrls: ['./check-in-page.css']
 })
 export class CheckInPage {
+
+  // Lista de estados disponibles
   estados = [
     'Estrés',
     'Ansiedad',
@@ -20,18 +22,35 @@ export class CheckInPage {
     'Gratitud'
   ];
 
+  // Modelo del formulario
   estadoActual: string = '';
+  nota: string = '';
 
-  historial: { estado: string; fecha: Date }[] = [];
+  mostrarError = false; // <-- Para controlar el mensaje al pulsar "Registrar"
 
-  registrar() {
-    if (!this.estadoActual) return;
+  // Historial de registros
+  historial: { estado: string; nota?: string; fecha: Date }[] = [];
 
+  registrar(form: any) {
+    this.mostrarError = false; // reset del error
+
+    // Si no ha elegido estado, mostramos error al usuario
+    if (!this.estadoActual) {
+      this.mostrarError = true;
+      return;
+    }
+
+    // Guardamos entrada
     this.historial.unshift({
       estado: this.estadoActual,
+      nota: this.nota,
       fecha: new Date()
     });
 
-    this.estadoActual = '';
+    // Reset visual y de validación
+    form.resetForm();
+
+    // Aseguramos que no aparezca error tras reset
+    this.mostrarError = false;
   }
 }

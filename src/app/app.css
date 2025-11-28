@@ -1,0 +1,17 @@
+.menu a {
+  color: #e4e4e4;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: 0.25s ease;
+}
+
+.menu a.active {
+  background: #3a3f47;
+  color: #8fe3b0;
+  font-weight: 600;
+}
+
+.menu a:hover {
+  background: #2a2e34;
+}
