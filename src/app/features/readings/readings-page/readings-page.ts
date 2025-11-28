@@ -38,7 +38,7 @@ export class ReadingsPage {
       author: 'Inspirado en estoicismo',
       moodTag: 'Ansiedad',
       minutes: 4,
-      favorited: true,
+      favorited: false,
     },
     {
       id: 3,

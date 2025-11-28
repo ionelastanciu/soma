@@ -4,16 +4,14 @@ import { NgIf, NgFor, NgClass, DatePipe } from '@angular/common';
 import { JournalService, JournalEntry } from '../../../core/journal.service';
 import { ShortTextPipe } from '../../../shared/pipes/short-text.pipe';
 
-
 @Component({
   selector: 'app-journal-page',
   standalone: true,
   imports: [FormsModule, NgIf, NgFor, NgClass, DatePipe, ShortTextPipe],
   templateUrl: './journal-page.html',
-  styleUrl: './journal-page.css'
+  styleUrls: ['./journal-page.css'],
 })
 export class JournalPage implements OnInit {
-
   moods = [
     'Estrés',
     'Ansiedad',
@@ -21,13 +19,16 @@ export class JournalPage implements OnInit {
     'Falta de sueño',
     'Desmotivación',
     'Tranquilidad',
-    'Gratitud'
+    'Gratitud',
   ];
 
   mood: string = '';
   text: string = '';
 
   entries: JournalEntry[] = [];
+
+  // controla si mostramos mensajes de error
+  showErrors = false;
 
   constructor(private journalService: JournalService) {}
 
@@ -40,10 +41,21 @@ export class JournalPage implements OnInit {
   }
 
   addEntry(): void {
-    this.journalService.addEntry(this.mood, this.text);
+    // el usuario ha intentado enviar
+    this.showErrors = true;
 
+    if (!this.mood || !this.text.trim()) {
+      // hay errores → solo mostramos mensajes, no guardamos
+      return;
+    }
+
+    // si llegamos aquí, todo OK
+    this.journalService.addEntry(this.mood, this.text.trim());
+
+    // limpiamos formulario
     this.mood = '';
     this.text = '';
+    this.showErrors = false; // ocultamos errores hasta el siguiente intento
 
     this.refreshEntries();
   }

@@ -1,88 +1,136 @@
+/* === PALETA PASTEL SOMA === */
 :root {
-  --bg: #050608;
-  --bg-elevated: #10131a;
-  --border-subtle: #1f2430;
-  --accent: #9ace7a;
-  --accent-soft: #355c3b;
-  --text-main: #ecf1ff;
-  --text-muted: #a7b1c6;
+  --bg-main: #fdfaf7;           /* crema muy suave */
+  --bg-card: #ffffff;           /* blanco puro para contraste */
+  --bg-input: #f1eefc;          /* lila pastel MUY suave */
+  --bg-input-dark: #e3e0f5;     /* un tono más fuerte para focus */
+  --shadow-soft: rgba(0, 0, 0, 0.05);
+
+  --text-main: #333;            /* gris oscuro legible */
+  --text-muted: #666;
+  --text-light: #fff;
+
+  --accent-pink: #f7bce3;
+  --accent-purple: #bda9ff;
+  --accent-mint: #b8f3da;
+  --accent-blue: #a8d8ff;
 }
 
-* {
-  box-sizing: border-box;
-}
-
+/* === FONDO GENERAL === */
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #10131a 0, #050608 55%);
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg-main);
   color: var(--text-main);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
+/* === NAVBAR === */
 .topbar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  background: linear-gradient(to right, #fce5f1, #e7e2ff, #dcf7ef);
+  padding: 14px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 18px;
-  background: rgba(5, 6, 8, 0.92);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: 0px 2px 10px var(--shadow-soft);
 }
 
 .brand {
   font-weight: 700;
-  letter-spacing: 0.04em;
-  font-size: 1.05rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.menu {
-  display: flex;
-  gap: 18px;
-  font-size: 0.95rem;
+  font-size: 20px;
+  color: var(--text-main);
 }
 
 .menu a {
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
+  color: var(--text-main);
+  opacity: 0.7;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: 0.2s;
 }
 
 .menu a.active {
-  color: var(--accent);
-  border-color: var(--accent);
+  opacity: 1;
+  background: var(--accent-mint);
+  font-weight: 600;
 }
 
-.container {
-  max-width: 1080px;
-  margin: 24px auto;
-  padding: 0 16px 40px;
+.menu a:hover {
+  opacity: 1;
 }
 
-
+/* === TARJETAS === */
 .card {
-  background: var(--bg-elevated);
-  border-radius: 14px;
-  border: 1px solid var(--border-subtle);
-  padding: 18px 18px 20px;
-  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.45);
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0px 4px 12px var(--shadow-soft);
+  margin: 20px 0;
 }
 
-.card h1 {
-  margin: 0 0 6px;
+/* === INPUTS === */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--accent-purple);
+  background: var(--bg-input);
+  color: var(--text-main);
+  font-size: 16px;
 }
 
+input:focus,
+select:focus,
+textarea:focus {
+  background: var(--bg-input-dark);
+  outline: none;
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 0 3px rgba(189, 169, 255, 0.5);
+}
+
+/* === BOTONES === */
+button {
+  background: var(--accent-purple);
+  color: var(--text-light);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: var(--accent-pink);
+  transform: translateY(-2px);
+}
+
+button.danger {
+  background: #ffb3b3;
+}
+
+button.danger:hover {
+  background: #ff8e8e;
+}
+
+/* === LISTAS, TARJETAS DE LECTURA === */
+.reading-card {
+  background: var(--bg-input);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* === TEXTO === */
 .muted {
   color: var(--text-muted);
-  margin: 0;
-  font-size: 0.95rem;
 }
+.error {
+  color: #e57373;
+  font-size: 14px;
+}
+

@@ -9,12 +9,14 @@
     <div class="selector field">
       <label for="estado" class="label">¿Cómo te sientes?</label>
 
-      <select
-        id="estado"
-        name="estado"
-        [(ngModel)]="estadoActual"
-        #estadoCtrl="ngModel"
-      >
+ <select
+  id="estado"
+  name="estado"
+  [(ngModel)]="estadoActual"
+  required
+  #estadoCtrl="ngModel"
+>
+
         <option value="">Seleccionar estado…</option>
         <option *ngFor="let e of estados" [value]="e">{{ e }}</option>
       </select>

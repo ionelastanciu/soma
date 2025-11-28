@@ -1,17 +1,42 @@
+/* MENU GENERAL */
 .menu a {
-  color: #e4e4e4;
+  color: #3e3e3e; /* gris oscuro legible */
   text-decoration: none;
   padding: 6px 12px;
   border-radius: 6px;
   transition: 0.25s ease;
+  font-weight: 500;
 }
 
+/* HOVER */
+.menu a:hover {
+  background: #ece6ff; /* lavanda suave */
+  color: #1a1a1a;
+}
+
+/* ACTIVO */
 .menu a.active {
-  background: #3a3f47;
-  color: #8fe3b0;
+  background: #c6ffe6; /* menta pastel */
+  color: #1a1a1a !important;
   font-weight: 600;
 }
 
-.menu a:hover {
-  background: #2a2e34;
+/* NAVBAR TONO PASTEL */
+.topbar {
+  background: linear-gradient(
+    to right,
+    #ffe9f6,
+    #f3eaff,
+    #e5fff6
+  ); /* rosa - lavanda - menta */
+  padding: 14px 20px;
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.04);
+}
+
+/* TEXTO NAVBAR */
+.topbar,
+.topbar .brand,
+.topbar a {
+  color: #1a1a1a !important;
+  font-weight: 600;
 }
