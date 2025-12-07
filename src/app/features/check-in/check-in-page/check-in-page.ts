@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor, DatePipe } from '@angular/common';
+import { NgIf, NgFor, DatePipe, NgClass } from '@angular/common';
+import { EstadoService } from '../../../core/estado.service';  
 
 @Component({
   selector: 'app-check-in-page',
   standalone: true,
-  imports: [FormsModule, NgIf, NgFor, DatePipe],
+  imports: [FormsModule, NgIf, NgFor, NgClass, DatePipe],
   templateUrl: './check-in-page.html',
   styleUrls: ['./check-in-page.css']
 })
 export class CheckInPage {
 
-  // Lista de estados disponibles
   estados = [
     'Estrés',
     'Ansiedad',
@@ -22,35 +22,37 @@ export class CheckInPage {
     'Gratitud'
   ];
 
-  // Modelo del formulario
   estadoActual: string = '';
   nota: string = '';
 
-  mostrarError = false; // <-- Para controlar el mensaje al pulsar "Registrar"
+  mostrarError = false;
 
-  // Historial de registros
   historial: { estado: string; nota?: string; fecha: Date }[] = [];
 
-  registrar(form: any) {
-    this.mostrarError = false; // reset del error
+  constructor(private estadoService: EstadoService) {}
 
-    // Si no ha elegido estado, mostramos error al usuario
+  registrar(form: any) {
+    this.mostrarError = false;
+
     if (!this.estadoActual) {
       this.mostrarError = true;
       return;
     }
 
-    // Guardamos entrada
     this.historial.unshift({
       estado: this.estadoActual,
       nota: this.nota,
       fecha: new Date()
     });
 
-    // Reset visual y de validación
+    this.estadoService.guardarEstado({
+      estado: this.estadoActual,
+      nota: this.nota,
+      fecha: new Date().toISOString()
+    });
+
     form.resetForm();
 
-    // Aseguramos que no aparezca error tras reset
     this.mostrarError = false;
   }
 }

@@ -114,7 +114,6 @@ button.danger:hover {
   background: #ff8e8e;
 }
 
-/* === LISTAS, TARJETAS DE LECTURA === */
 .reading-card {
   background: var(--bg-input);
   border-radius: 12px;
@@ -125,7 +124,6 @@ button.danger:hover {
   align-items: center;
 }
 
-/* === TEXTO === */
 .muted {
   color: var(--text-muted);
 }

@@ -1,81 +1,82 @@
 <section class="card">
   <h1>Diario emocional</h1>
+
   <p class="muted">
-    Escribe brevemente cómo te sientes hoy. No tiene que ser perfecto, solo honesto.
+    Puedes escribir con calma cómo te sientes y qué ha pasado en tu día.
   </p>
 
-  <form class="journal-form" (ngSubmit)="addEntry()" novalidate>
-    <!-- ESTADO -->
+  <form (ngSubmit)="addEntry()">
     <div class="field">
-      <label for="mood">Estado principal</label>
-   <select
-  id="mood"
-  name="mood"
-  [(ngModel)]="mood"
-  required
-  #moodCtrl="ngModel"
->
-
+      <label for="mood" class="label">Estado principal de la entrada</label>
+      <select
+        id="mood"
+        name="mood"
+        [(ngModel)]="mood"
+        required
+        #moodCtrl="ngModel"
+        [ngClass]="{ 'input-error': showErrors && !mood }"
+      >
         <option value="">Seleccionar estado…</option>
         <option *ngFor="let m of moods" [value]="m">{{ m }}</option>
       </select>
-
-      <small class="error" *ngIf="showErrors && !mood">
-        Selecciona cómo te sientes.
-      </small>
+      <p class="error" *ngIf="showErrors && !mood">
+        Selecciona un estado para tu entrada.
+      </p>
     </div>
 
-    <!-- TEXTO -->
     <div class="field">
-      <label for="text">Entrada del día</label>
-   <textarea
-  id="text"
-  name="text"
-  [(ngModel)]="text"
-  required
-  #textCtrl="ngModel"
-></textarea>
-
-
-      <small class="error" *ngIf="showErrors && !text.trim()">
-        Escribe al menos una frase.
-      </small>
+      <label for="text" class="label">Entrada del día</label>
+      <textarea
+        id="text"
+        name="text"
+        rows="5"
+        [(ngModel)]="text"
+        placeholder="Escribe lo que necesites: cómo te has sentido, qué ha pasado, qué quieres recordarte…"
+        [ngClass]="{ 'input-error': showErrors && !text.trim() }"
+      ></textarea>
+      <p class="error" *ngIf="showErrors && !text.trim()">
+        El diario necesita al menos unas líneas para guardar la entrada.
+      </p>
     </div>
 
-    <!-- BOTÓN SIEMPRE HABILITADO -->
-    <button type="submit">
-      Guardar entrada
+    <button type="submit" class="btn">
+      Guardar entrada 📝
     </button>
   </form>
 
-  <!-- ENTRADAS VACÍAS -->
-  <p class="muted" *ngIf="entries.length === 0">
-    Aún no has escrito nada en tu diario. Tu primera entrada puede ser tan simple como:
-    “Hoy he decidido empezar a escucharme”.
+  <hr class="divider" />
+
+  <h2 class="subtitulo">Tus entradas recientes</h2>
+
+  <p *ngIf="entries.length === 0" class="muted">
+    Aún no has escrito nada en tu diario.  
+    Tu primera entrada puede ser algo tan simple como:
+    <em>“Hoy he decidido empezar a escucharme”.</em>
   </p>
 
-  <!-- LISTADO -->
-  <ul class="entries" *ngIf="entries.length > 0">
-    <li *ngFor="let e of entries" [ngClass]="{ important: e.important }">
-      <header class="entry-header">
-        <div>
-          <span class="date">{{ e.date | date: 'short' }}</span>
-          <span class="mood-tag">{{ e.mood }}</span>
-        </div>
+  <ul class="journal-list" *ngIf="entries.length > 0">
+    <li
+      *ngFor="let entry of entries"
+      [ngClass]="{ important: entry.important }"
+    >
+      <div class="journal-header">
+        <span class="badge">{{ entry.mood }}</span>
+        <span class="date">{{ entry.date | date: 'short' }}</span>
+      </div>
 
-        <div class="entry-actions">
-          <button type="button" (click)="toggleImportant(e)">
-            {{ e.important ? '★ Importante' : '☆ Marcar' }}
-          </button>
-          <button type="button" class="danger" (click)="removeEntry(e.id)">
-            Eliminar
-          </button>
-        </div>
-      </header>
-
-      <p class="text">
-        {{ e.text | shortText: 220 }}
+      <p class="journal-text">
+        {{ entry.text | shortText: 220 }}
       </p>
+
+      <div class="actions">
+        <button type="button" (click)="toggleImportant(entry)">
+          {{ entry.important ? 'Quitar destacado' : 'Marcar como importante' }}
+        </button>
+
+        <button type="button" class="danger" (click)="removeEntry(entry.id)">
+          Eliminar
+        </button>
+      </div>
     </li>
   </ul>
 </section>

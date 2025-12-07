@@ -1,7 +1,37 @@
-<section class="card">
-  <h1>Bienvenida a SOMA</h1>
-  <p class="muted">
-    Esta es tu guía de bienestar y mindfulness. Aquí podrás registrar cómo te sientes,
-    recibir recomendaciones de respiración, lecturas y música, y llevar un pequeño diario emocional.
+<section class="card home-card">
+
+  <h1>Bienvenida a SOMA 🌿</h1>
+  <p class="intro">
+    Tu espacio de calma, autocuidado y claridad.  
+    Aquí encontrarás pequeñas semillas de bienestar para tu día.
   </p>
+
+  <hr class="divider">
+
+  <!-- FRASE DEL DÍA (API) -->
+  <div class="frase-section">
+    <h2>✨ Frase del día</h2>
+
+    <p *ngIf="cargandoFrase" class="loading">
+      Cargando frase inspiradora…
+    </p>
+
+    <p *ngIf="errorFrase" class="error">
+      No se pudo obtener la frase.  
+      <button class="retry" (click)="cargarFraseDelDia()">Reintentar</button>
+    </p>
+
+    <p *ngIf="fraseDelDia" class="frase-text">
+      “{{ fraseDelDia }}”
+    </p>
+
+    <button class="refresh-btn" (click)="cargarFraseDelDia()">
+      🔄 Nueva frase
+    </button>
+  </div>
+  <p *ngIf="clima" class="temp">{{ clima.temp }} °C</p>
+<p *ngIf="clima" class="desc">{{ clima.descripcion }}</p>
+<button (click)="cargarClima()">Actualizar clima</button>
+
+
 </section>

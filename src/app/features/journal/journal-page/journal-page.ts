@@ -27,7 +27,6 @@ export class JournalPage implements OnInit {
 
   entries: JournalEntry[] = [];
 
-  // controla si mostramos mensajes de error
   showErrors = false;
 
   constructor(private journalService: JournalService) {}
@@ -41,22 +40,17 @@ export class JournalPage implements OnInit {
   }
 
   addEntry(): void {
-    // el usuario ha intentado enviar
     this.showErrors = true;
 
     if (!this.mood || !this.text.trim()) {
-      // hay errores → solo mostramos mensajes, no guardamos
       return;
     }
 
-    // si llegamos aquí, todo OK
     this.journalService.addEntry(this.mood, this.text.trim());
 
-    // limpiamos formulario
     this.mood = '';
     this.text = '';
-    this.showErrors = false; // ocultamos errores hasta el siguiente intento
-
+    this.showErrors = false;
     this.refreshEntries();
   }
 

@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'journal', component: JournalPage },
   { path: 'about', component: AboutPage },
 
-  // Redirecciones
+
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundPage },
 ];

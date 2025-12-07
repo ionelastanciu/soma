@@ -69,7 +69,6 @@
   font-size: 0.85rem;
 }
 
-/* BOTÓN */
 .fav-btn {
   border-radius: 999px;
   border: 1px solid #d6d0f6;
@@ -86,7 +85,6 @@
   background: #ede8ff;
 }
 
-/* FIX: compatibilidad con tu clase antigua */
 .reading-card,
 .reading-card * {
   color: #1a1a1a !important;

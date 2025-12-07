@@ -1,0 +1,57 @@
+.home-card {
+  text-align: center;
+  padding: 28px;
+  border-radius: 18px;
+  background: #ffffffee;
+}
+
+.intro {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 14px;
+}
+
+.frase-section h2 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #6f6dbf; /* lavanda */
+}
+
+.frase-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #444;
+  margin: 14px 0;
+}
+
+.loading {
+  color: #888;
+  font-style: italic;
+}
+
+.error {
+  color: #c0392b;
+  font-size: 0.9rem;
+}
+
+.retry {
+  background: transparent;
+  border: none;
+  color: #6f6dbf;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.refresh-btn {
+  margin-top: 10px;
+  background: #bda9ff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  transition: 0.2s;
+}
+
+.refresh-btn:hover {
+  background: #d7c8ff;
+}
