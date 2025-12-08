@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor, DatePipe, NgClass } from '@angular/common';
 
-import { EstadoService } from '../../../core/estado.service';
 import { EstadoApiService } from '../../../core/estado-api.service';
 
 @Component({
@@ -34,7 +33,6 @@ export class CheckInPage implements OnInit {
   historial: any[] = []; 
 
   constructor(
-    private estadoService: EstadoService,
     private estadoApi: EstadoApiService
   ) {}
 
@@ -74,7 +72,6 @@ export class CheckInPage implements OnInit {
       fecha: new Date().toISOString()
     };
 
-    this.estadoService.guardarEstado(nuevoEstado);
 
     this.estadoApi.addEstado(nuevoEstado).subscribe({
       next: () => {

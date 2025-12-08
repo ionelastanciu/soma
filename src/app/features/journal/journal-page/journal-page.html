@@ -1,11 +1,12 @@
-<section class="card">
+<section class="card journal-card">
   <h1>Diario emocional</h1>
 
   <p class="muted">
-    Puedes escribir con calma cómo te sientes y qué ha pasado en tu día.
+    Escribe con calma cómo te sientes hoy.
   </p>
 
-  <form (ngSubmit)="addEntry()">
+  <form (ngSubmit)="addEntry()" class="journal-form">
+
     <div class="field">
       <label class="label">Estado principal de la entrada</label>
 
@@ -19,9 +20,7 @@
         <option *ngFor="let m of moods" [value]="m">{{ m }}</option>
       </select>
 
-      <p class="error" *ngIf="showErrors && !mood">
-        Selecciona un estado emocional.
-      </p>
+      <p class="error" *ngIf="showErrors && !mood">Selecciona un estado emocional.</p>
     </div>
 
     <div class="field">
@@ -31,8 +30,8 @@
         [(ngModel)]="text"
         name="text"
         rows="5"
-        [ngClass]="{ 'input-error': showErrors && !text.trim() }"
         placeholder="Escribe lo que necesites..."
+        [ngClass]="{ 'input-error': showErrors && !text.trim() }"
       ></textarea>
 
       <p class="error" *ngIf="showErrors && !text.trim()">
@@ -40,20 +39,23 @@
       </p>
     </div>
 
-    <button type="submit" class="btn">Guardar entrada 📝</button>
+    <button type="submit" class="btn-primary">
+      Guardar entrada 📝
+    </button>
+
   </form>
 
-  <hr class="divider">
+  <hr class="divider" />
 
   <p class="muted" *ngIf="entries.length === 0">
     Tu diario está vacío.  
-    Puedes comenzar con algo sencillo como:
+    Puedes comenzar con algo sencillo:  
     <em>“Hoy he decidido escucharme”.</em>
   </p>
 
   <ul class="journal-list" *ngIf="entries.length > 0">
-    <li *ngFor="let entry of entries" [ngClass]="{ important: entry.important }">
-      
+    <li *ngFor="let entry of entries" [ngClass]="{ important: entry.important }" class="journal-item">
+
       <div class="journal-header">
         <span class="badge">{{ entry.mood }}</span>
         <span class="date">{{ entry.date | date:'short' }}</span>
@@ -64,11 +66,11 @@
       </p>
 
       <div class="actions">
-        <button type="button" (click)="toggleImportant(entry)">
+        <button type="button" class="btn-secondary" (click)="toggleImportant(entry)">
           {{ entry.important ? 'Quitar destacado' : 'Marcar importante' }}
         </button>
 
-        <button type="button" class="danger" (click)="removeEntry(entry.id!)">
+        <button type="button" class="btn-danger" (click)="removeEntry(entry.id!)">
           Eliminar
         </button>
       </div>

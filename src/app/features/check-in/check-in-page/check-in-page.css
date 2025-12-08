@@ -1,3 +1,33 @@
+
+.checkin-card {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
+}
+
+
+h1 {
+  margin-bottom: 4px;
+  color: var(--accent-forest);
+}
+
+.intro-muted {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 22px;
+}
+
+.form-card {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 4px 14px var(--shadow-soft);
+}
+
 .field {
   display: flex;
   flex-direction: column;
@@ -8,40 +38,107 @@
 .label {
   color: var(--text-muted);
   font-size: 0.85rem;
+  font-weight: 500;
 }
 
-.error {
-  color: #ff8a8a;
+select,
+textarea {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-input);
+  color: var(--text-main);
+  transition: 0.25s ease;
+}
+
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-forest);
+  background: var(--bg-input-dark);
+  box-shadow: 0 0 0 3px rgba(31,143,73,0.25);
+}
+
+.hint {
+  color: var(--text-muted);
   font-size: 0.8rem;
 }
 
-.selector select,
-textarea {
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #334155;
-  background: #0f172a;
+
+.btn-submit {
+  background: var(--accent-forest);
   color: white;
+  padding: 14px 20px;
+  border-radius: 14px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.25s ease;
 }
 
-.selector select:focus,
-textarea:focus {
-  outline: 1px solid var(--accent);
+.btn-submit:hover {
+  background: #34c759;
+  transform: translateY(-2px);
+}
+
+
+.error {
+  color: #ff6b6b;
+  font-size: 0.8rem;
+}
+
+.input-error {
+  border: 2px solid #ff6b6b !important;
+  background: #ffeaea !important;
+}
+
+
+.subtitulo {
+  margin-top: 28px;
+  font-size: 1.3rem;
+  color: var(--accent-forest);
+}
+
+.historial {
+  list-style: none;
+  padding: 0;
+  margin-top: 18px;
+}
+
+.historial-item {
+  background: var(--bg-card);
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border-soft);
+  margin-bottom: 14px;
+  box-shadow: 0 3px 12px var(--shadow-soft);
+  animation: fadeIn 0.4s ease;
 }
 
 .row {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  align-items: center;
+}
+
+.estado-pill {
+  background: var(--accent-forest-light);
+  padding: 5px 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-forest);
+}
+
+.fecha {
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
 .nota {
-  margin-top: 4px;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-.input-error {
-  border: 2px solid #e57373 !important;
-  background: #ffecec !important;
+  margin-top: 6px;
+  color: var(--text-main);
+  font-size: 0.9rem;
 }
 

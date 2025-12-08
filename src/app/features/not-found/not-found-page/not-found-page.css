@@ -1,9 +1,49 @@
-.not-found {
+.notfound-card {
+  margin: 60px auto;
+  max-width: 500px;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 18px;
   text-align: center;
-  padding: 80px 20px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  animation: fadeIn 0.45s ease-out;
 }
 
-.not-found a {
-  color: #8fe3b0;
-  text-decoration: underline;
+.icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+h1 {
+  color: #244c33;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.muted {
+  color: #4f5d54;
+  font-size: 1rem;
+  margin-bottom: 22px;
+  line-height: 1.45;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: #4e7a5f;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn-primary:hover {
+  background: #3a634b;
+  transform: translateY(-2px);
+}
+
+/* Animación suave */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }

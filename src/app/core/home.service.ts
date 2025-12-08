@@ -14,14 +14,13 @@ export class HomeService {
 
   constructor(private http: HttpClient) {}
 
-  /** Obtiene frase en inglés */
+
   getFraseMotivacional(): Observable<string> {
     return this.http.get<FraseResponse>(this.apiUrl).pipe(
-      switchMap((resp) => this.traducirTexto(resp.quote))  // ← traducimos
+      switchMap((resp) => this.traducirTexto(resp.quote))  
     );
   }
 
-  /** Traduce texto EN → ES usando MyMemory API */
   private traducirTexto(texto: string): Observable<string> {
     const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(texto)}&langpair=en|es`;
 
@@ -29,7 +28,7 @@ export class HomeService {
       map((resp) => resp.responseData.translatedText || texto)
     );
   }
-  /** Consulta clima real basado en latitud y longitud */
+ 
 getClimaReal(lat: number, lon: number) {
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=auto`;
 
@@ -41,7 +40,6 @@ getClimaReal(lat: number, lon: number) {
   );
 }
 
-/** Traducción simple de códigos meteorológicos → texto español */
 private traducirClima(code: number): string {
   const mapa: any = {
     0: 'Cielo despejado',

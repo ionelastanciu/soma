@@ -1,23 +1,27 @@
-<section class="card home-card">
-  <div class="video-wrapper">
-    <iframe
-      class="video-bg"
-      src="https://www.youtube.com/embed/59fHDWDhzkY?autoplay=1&mute=1&loop=1&controls=0&playlist=59fHDWDhzkY"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-    ></iframe>
+<section class="card home-card fade-in">
 
-    <div class="overlay-content">
-      <h1>Bienvenida a SOMA</h1>
-      <p class="intro">
-        Tu espacio de calma, autocuidado y claridad.
-      </p>
+  <div class="hero-wrapper">
+
+    <div class="hero-video">
+      <iframe
+        class="video-bg"
+        src="https://www.youtube.com/embed/59fHDWDhzkY?autoplay=1&mute=1&loop=1&controls=0&playlist=59fHDWDhzkY"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+      ></iframe>
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1>SOMA</h1>
+      <p>Tu espacio de calma, autocuidado y claridad.</p>
     </div>
   </div>
 
-  <hr class="divider">
 
   <div class="frase-section">
+
     <h2>✨ Frase del día ✨</h2>
 
     <p *ngIf="cargandoFrase" class="loading">
@@ -46,4 +50,5 @@
     >
     {{ weather.temp }} °C · {{ weather.desc }}
   </div>
+
 </section>

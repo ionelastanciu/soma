@@ -1,22 +1,36 @@
-/* === PALETA PASTEL SOMA === */
+/* ===========================================================
+   💚 PALETA / VARIABLES GLOBALES SOMA
+   =========================================================== */
+
 :root {
-  --bg-main: #fdfaf7;           /* crema muy suave */
-  --bg-card: #ffffff;           /* blanco puro para contraste */
-  --bg-input: #f1eefc;          /* lila pastel MUY suave */
-  --bg-input-dark: #e3e0f5;     /* un tono más fuerte para focus */
-  --shadow-soft: rgba(0, 0, 0, 0.05);
+  --bg-main: #f4f8f4;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #f0f5f0;
 
-  --text-main: #333;            /* gris oscuro legible */
-  --text-muted: #666;
-  --text-light: #fff;
+  --bg-input: #e8f4ea;
+  --bg-input-dark: #d7eede;
 
-  --accent-pink: #f7bce3;
-  --accent-purple: #bda9ff;
-  --accent-mint: #b8f3da;
-  --accent-blue: #a8d8ff;
+  --text-main: #1b2b1b;
+  --text-muted: #4e5c4e;
+  --text-light: #ffffff;
+
+  --brand-green: #1f8f49;
+  --brand-green-light: #34c759;
+  --brand-green-soft: #a7e8b5;
+
+  --success: #34c759;
+  --warning: #ffba57;
+  --danger: #ff6b6b;
+  --info: #4da3ff;
+
+  --border-soft: rgba(0,0,0,0.1);
+  --shadow-soft: rgba(0,0,0,0.08);
 }
 
-/* === FONDO GENERAL === */
+/* ===========================================================
+   BASE
+   =========================================================== */
+
 body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
@@ -24,95 +38,178 @@ body {
   color: var(--text-main);
 }
 
-/* === NAVBAR === */
+/* ===========================================================
+   NAVBAR
+   =========================================================== */
+
 .topbar {
-  background: linear-gradient(to right, #fce5f1, #e7e2ff, #dcf7ef);
+  background: linear-gradient(to right, var(--brand-green), var(--brand-green-light));
   padding: 14px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0px 2px 10px var(--shadow-soft);
+  box-shadow: 0px 3px 12px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(6px);
 }
 
 .brand {
   font-weight: 700;
-  font-size: 20px;
-  color: var(--text-main);
+  font-size: 22px;
+  color: var(--text-light);
+}
+
+.menu {
+  display: flex;
+  gap: 12px;
 }
 
 .menu a {
-  color: var(--text-main);
-  opacity: 0.7;
   padding: 8px 14px;
-  border-radius: 8px;
-  transition: 0.2s;
-}
-
-.menu a.active {
-  opacity: 1;
-  background: var(--accent-mint);
-  font-weight: 600;
+  color: var(--text-light);
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 500;
+  opacity: 0.85;
+  transition: 0.25s ease;
 }
 
 .menu a:hover {
   opacity: 1;
+  background: rgba(255,255,255,0.15);
 }
 
-/* === TARJETAS === */
+.menu a.active {
+  background: rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.4);
+  opacity: 1;
+  font-weight: 600;
+}
+
+/* ===========================================================
+   CARD — REFINADA Y UNIFICADA
+   =========================================================== */
+
 .card {
-  background: var(--bg-card);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0px 4px 12px var(--shadow-soft);
-  margin: 20px 0;
+  background: var(--bg-surface);
+  border-radius: 18px;
+  padding: 28px 26px;
+  margin: 24px 0;
+  box-shadow:
+    0px 2px 6px rgba(0,0,0,0.04),
+    0px 6px 18px rgba(0,0,0,0.08);
+  animation: fadeIn 0.45s ease-out both;
 }
 
-/* === INPUTS === */
+/* Tipografía dentro de tarjetas */
+.card h1,
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+/* ===========================================================
+   TIPOGRAFÍA PROFESIONAL
+   =========================================================== */
+
+h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin: 0 0 18px 0;
+  color: var(--text-main);
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 14px 0 10px;
+  color: var(--brand-green);
+}
+
+h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 12px 0 6px;
+}
+
+p {
+  line-height: 1.55;
+  margin: 0 0 14px;
+}
+
+.muted {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* Labels */
+label,
+.label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+/* ===========================================================
+   INPUTS
+   =========================================================== */
+
 input,
 select,
 textarea {
   width: 100%;
   padding: 14px;
   border-radius: 12px;
-  border: 1px solid var(--accent-purple);
+  border: 1px solid var(--border-soft);
   background: var(--bg-input);
-  color: var(--text-main);
   font-size: 16px;
+  color: var(--text-main);
+  transition: 0.25s ease;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
   background: var(--bg-input-dark);
-  outline: none;
-  border-color: var(--accent-purple);
-  box-shadow: 0 0 0 3px rgba(189, 169, 255, 0.5);
+  border-color: var(--brand-green);
+  box-shadow: 0 0 0 3px rgba(31,143,73,0.35);
 }
 
-/* === BOTONES === */
+/* ===========================================================
+   BOTONES
+   =========================================================== */
+
 button {
-  background: var(--accent-purple);
+  background: var(--brand-green) !important;
   color: var(--text-light);
   border: none;
   padding: 12px 20px;
   border-radius: 12px;
   font-size: 16px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.25s ease;
 }
 
 button:hover {
-  background: var(--accent-pink);
+  background: var(--brand-green-light) !important;
   transform: translateY(-2px);
 }
 
 button.danger {
-  background: #ffb3b3;
+  background: var(--danger) !important;
 }
 
 button.danger:hover {
-  background: #ff8e8e;
+  background: #ff8585 !important;
 }
+
+/* ===========================================================
+   LECTURAS / LISTAS
+   =========================================================== */
 
 .reading-card {
   background: var(--bg-input);
@@ -124,11 +221,24 @@ button.danger:hover {
   align-items: center;
 }
 
-.muted {
-  color: var(--text-muted);
-}
+/* ===========================================================
+   ERRORES
+   =========================================================== */
+
 .error {
-  color: #e57373;
+  color: var(--danger);
   font-size: 14px;
 }
 
+/* ===========================================================
+   ANIMACIÓN SUAVE
+   =========================================================== */
+
+.fade-in {
+  animation: fadeIn 0.45s ease-out both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
