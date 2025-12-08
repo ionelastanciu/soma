@@ -7,76 +7,72 @@
 
   <form (ngSubmit)="addEntry()">
     <div class="field">
-      <label for="mood" class="label">Estado principal de la entrada</label>
+      <label class="label">Estado principal de la entrada</label>
+
       <select
-        id="mood"
-        name="mood"
         [(ngModel)]="mood"
+        name="mood"
         required
-        #moodCtrl="ngModel"
         [ngClass]="{ 'input-error': showErrors && !mood }"
       >
         <option value="">Seleccionar estado…</option>
         <option *ngFor="let m of moods" [value]="m">{{ m }}</option>
       </select>
+
       <p class="error" *ngIf="showErrors && !mood">
-        Selecciona un estado para tu entrada.
+        Selecciona un estado emocional.
       </p>
     </div>
 
     <div class="field">
-      <label for="text" class="label">Entrada del día</label>
+      <label class="label">Entrada del día</label>
+
       <textarea
-        id="text"
+        [(ngModel)]="text"
         name="text"
         rows="5"
-        [(ngModel)]="text"
-        placeholder="Escribe lo que necesites: cómo te has sentido, qué ha pasado, qué quieres recordarte…"
         [ngClass]="{ 'input-error': showErrors && !text.trim() }"
+        placeholder="Escribe lo que necesites..."
       ></textarea>
+
       <p class="error" *ngIf="showErrors && !text.trim()">
-        El diario necesita al menos unas líneas para guardar la entrada.
+        Escribe algo para guardar la entrada.
       </p>
     </div>
 
-    <button type="submit" class="btn">
-      Guardar entrada 📝
-    </button>
+    <button type="submit" class="btn">Guardar entrada 📝</button>
   </form>
 
-  <hr class="divider" />
+  <hr class="divider">
 
-  <h2 class="subtitulo">Tus entradas recientes</h2>
-
-  <p *ngIf="entries.length === 0" class="muted">
-    Aún no has escrito nada en tu diario.  
-    Tu primera entrada puede ser algo tan simple como:
-    <em>“Hoy he decidido empezar a escucharme”.</em>
+  <p class="muted" *ngIf="entries.length === 0">
+    Tu diario está vacío.  
+    Puedes comenzar con algo sencillo como:
+    <em>“Hoy he decidido escucharme”.</em>
   </p>
 
   <ul class="journal-list" *ngIf="entries.length > 0">
-    <li
-      *ngFor="let entry of entries"
-      [ngClass]="{ important: entry.important }"
-    >
+    <li *ngFor="let entry of entries" [ngClass]="{ important: entry.important }">
+      
       <div class="journal-header">
         <span class="badge">{{ entry.mood }}</span>
-        <span class="date">{{ entry.date | date: 'short' }}</span>
+        <span class="date">{{ entry.date | date:'short' }}</span>
       </div>
 
       <p class="journal-text">
-        {{ entry.text | shortText: 220 }}
+        {{ entry.text | shortText:220 }}
       </p>
 
       <div class="actions">
         <button type="button" (click)="toggleImportant(entry)">
-          {{ entry.important ? 'Quitar destacado' : 'Marcar como importante' }}
+          {{ entry.important ? 'Quitar destacado' : 'Marcar importante' }}
         </button>
 
-        <button type="button" class="danger" (click)="removeEntry(entry.id)">
+        <button type="button" class="danger" (click)="removeEntry(entry.id!)">
           Eliminar
         </button>
       </div>
+
     </li>
   </ul>
 </section>

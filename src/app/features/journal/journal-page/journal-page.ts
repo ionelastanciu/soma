@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor, NgClass, DatePipe } from '@angular/common';
-import { JournalService, JournalEntry } from '../../../core/journal.service';
+
+import { JournalApiService, DiarioEntry } from '../../../core/journal-api.service';
 import { ShortTextPipe } from '../../../shared/pipes/short-text.pipe';
 
 @Component({
@@ -12,55 +13,71 @@ import { ShortTextPipe } from '../../../shared/pipes/short-text.pipe';
   styleUrls: ['./journal-page.css'],
 })
 export class JournalPage implements OnInit {
+
   moods = [
-    'Estrés',
-    'Ansiedad',
-    'Cansancio',
-    'Falta de sueño',
-    'Desmotivación',
-    'Tranquilidad',
-    'Gratitud',
+    'Estrés', 'Ansiedad', 'Cansancio', 'Falta de sueño',
+    'Desmotivación', 'Tranquilidad', 'Gratitud',
   ];
 
-  mood: string = '';
-  text: string = '';
+  mood = '';
+  text = '';
 
-  entries: JournalEntry[] = [];
+  entries: DiarioEntry[] = [];
 
   showErrors = false;
+  cargando = false;
+  error = false;
 
-  constructor(private journalService: JournalService) {}
+  constructor(private api: JournalApiService) {}
 
   ngOnInit(): void {
-    this.refreshEntries();
+    this.loadEntries();
   }
 
-  private refreshEntries(): void {
-    this.entries = this.journalService.getEntries();
+  loadEntries(): void {
+    this.cargando = true;
+    this.api.getEntradas().subscribe({
+      next: (data) => {
+        this.entries = data.reverse(); 
+        this.cargando = false;
+      },
+      error: () => {
+        this.error = true;
+        this.cargando = false;
+      }
+    });
   }
 
   addEntry(): void {
     this.showErrors = true;
+    if (!this.mood || !this.text.trim()) return;
 
-    if (!this.mood || !this.text.trim()) {
-      return;
-    }
+    const entry: DiarioEntry = {
+      mood: this.mood,
+      text: this.text.trim(),
+      date: new Date().toISOString(),
+      important: false
+    };
 
-    this.journalService.addEntry(this.mood, this.text.trim());
-
-    this.mood = '';
-    this.text = '';
-    this.showErrors = false;
-    this.refreshEntries();
+    this.api.addEntrada(entry).subscribe({
+      next: () => {
+        this.mood = '';
+        this.text = '';
+        this.showErrors = false;
+        this.loadEntries();
+      }
+    });
   }
 
-  toggleImportant(entry: JournalEntry): void {
-    this.journalService.toggleImportant(entry.id);
-    this.refreshEntries();
+  toggleImportant(entry: DiarioEntry): void {
+    this.api.updateEntrada(entry.id!, { important: !entry.important }).subscribe(() => {
+      entry.important = !entry.important;
+    });
   }
 
   removeEntry(id: number): void {
-    this.journalService.removeEntry(id);
-    this.refreshEntries();
+    this.api.deleteEntrada(id).subscribe(() => {
+      this.entries = this.entries.filter(e => e.id !== id);
+    });
   }
 }

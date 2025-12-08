@@ -1,23 +1,31 @@
 <section class="card home-card">
+  <div class="video-wrapper">
+    <iframe
+      class="video-bg"
+      src="https://www.youtube.com/embed/59fHDWDhzkY?autoplay=1&mute=1&loop=1&controls=0&playlist=59fHDWDhzkY"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+    ></iframe>
 
-  <h1>Bienvenida a SOMA 🌿</h1>
-  <p class="intro">
-    Tu espacio de calma, autocuidado y claridad.  
-    Aquí encontrarás pequeñas semillas de bienestar para tu día.
-  </p>
+    <div class="overlay-content">
+      <h1>Bienvenida a SOMA</h1>
+      <p class="intro">
+        Tu espacio de calma, autocuidado y claridad.
+      </p>
+    </div>
+  </div>
 
   <hr class="divider">
 
-  <!-- FRASE DEL DÍA (API) -->
   <div class="frase-section">
-    <h2>✨ Frase del día</h2>
+    <h2>✨ Frase del día ✨</h2>
 
     <p *ngIf="cargandoFrase" class="loading">
       Cargando frase inspiradora…
     </p>
 
     <p *ngIf="errorFrase" class="error">
-      No se pudo obtener la frase.  
+      No se pudo obtener la frase.
       <button class="retry" (click)="cargarFraseDelDia()">Reintentar</button>
     </p>
 
@@ -29,9 +37,13 @@
       🔄 Nueva frase
     </button>
   </div>
-  <p *ngIf="clima" class="temp">{{ clima.temp }} °C</p>
-<p *ngIf="clima" class="desc">{{ clima.descripcion }}</p>
-<button (click)="cargarClima()">Actualizar clima</button>
 
-
+  <div class="weather-info" *ngIf="weather">
+    <img
+      [src]="weather.icon"
+      class="weather-icon"
+      [alt]="weather.icon"
+    >
+    {{ weather.temp }} °C · {{ weather.desc }}
+  </div>
 </section>

@@ -14,7 +14,7 @@
 .frase-section h2 {
   margin-bottom: 10px;
   font-size: 1.2rem;
-  color: #6f6dbf; /* lavanda */
+  color: #6f6dbf; 
 }
 
 .frase-text {
@@ -55,3 +55,56 @@
 .refresh-btn:hover {
   background: #d7c8ff;
 }
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 55vh; 
+  overflow: hidden;
+  border-radius: 0 0 20px 20px;
+}
+
+.video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120vw;
+  height: 120vh;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  filter: brightness(110%);
+}
+
+.overlay-content {
+  position: absolute;
+  top: 35%;
+  width: 100%;
+  z-index: 2;
+  text-align: center;
+  color: white;
+}
+
+.overlay-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.overlay-content p {
+  font-size: 1.2rem;
+  color: rgb(163, 158, 158);
+  opacity: 0.9;
+  
+}
+.weather-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.weather-icon {
+  width: 26px;
+  height: 26px;
+}
+

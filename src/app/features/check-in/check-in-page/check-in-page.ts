@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor, DatePipe, NgClass } from '@angular/common';
-import { EstadoService } from '../../../core/estado.service';  
+
+import { EstadoService } from '../../../core/estado.service';
+import { EstadoApiService } from '../../../core/estado-api.service';
 
 @Component({
   selector: 'app-check-in-page',
@@ -10,7 +12,7 @@ import { EstadoService } from '../../../core/estado.service';
   templateUrl: './check-in-page.html',
   styleUrls: ['./check-in-page.css']
 })
-export class CheckInPage {
+export class CheckInPage implements OnInit {
 
   estados = [
     'Estrés',
@@ -26,11 +28,38 @@ export class CheckInPage {
   nota: string = '';
 
   mostrarError = false;
+  cargando = false;
+  errorCarga = false;
 
-  historial: { estado: string; nota?: string; fecha: Date }[] = [];
+  historial: any[] = []; 
 
-  constructor(private estadoService: EstadoService) {}
+  constructor(
+    private estadoService: EstadoService,
+    private estadoApi: EstadoApiService
+  ) {}
 
+
+  ngOnInit(): void {
+    this.cargarHistorial();
+  }
+
+  cargarHistorial(): void {
+    this.cargando = true;
+    this.errorCarga = false;
+
+    this.estadoApi.getEstados().subscribe({
+      next: (data) => {
+        this.historial = data.reverse();
+        this.cargando = false;
+      },
+      error: () => {
+        this.errorCarga = true;
+        this.cargando = false;
+      }
+    });
+  }
+
+ 
   registrar(form: any) {
     this.mostrarError = false;
 
@@ -39,20 +68,22 @@ export class CheckInPage {
       return;
     }
 
-    this.historial.unshift({
-      estado: this.estadoActual,
-      nota: this.nota,
-      fecha: new Date()
-    });
-
-    this.estadoService.guardarEstado({
+    const nuevoEstado = {
       estado: this.estadoActual,
       nota: this.nota,
       fecha: new Date().toISOString()
+    };
+
+    this.estadoService.guardarEstado(nuevoEstado);
+
+    this.estadoApi.addEstado(nuevoEstado).subscribe({
+      next: () => {
+        this.cargarHistorial(); 
+        form.resetForm();
+      },
+      error: () => {
+        alert("No se pudo guardar el estado en el servidor.");
+      }
     });
-
-    form.resetForm();
-
-    this.mostrarError = false;
   }
 }

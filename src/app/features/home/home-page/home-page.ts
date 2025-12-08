@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeService } from '../../../core/home.service';
+import { ClimateService, WeatherInfo } from '../../../core/climate.service';
 
 @Component({
   selector: 'app-home-page',
@@ -11,32 +12,31 @@ import { HomeService } from '../../../core/home.service';
 })
 export class HomePage implements OnInit {
 
-  // --- FRASE DEL DÍA ---
   fraseDelDia: string | null = null;
   cargandoFrase = false;
   errorFrase = false;
 
-  // --- CLIMA ---
-  clima: { temp: number; descripcion: string } | null = null;
+  weather: WeatherInfo | null = null;
   cargandoClima = false;
 
-  constructor(private homeService: HomeService) {}
+  constructor(
+    private homeService: HomeService,
+    private climate: ClimateService
+  ) {}
 
   ngOnInit(): void {
     this.cargarFraseDelDia();
     this.cargarClima();
+    setInterval(() => this.cargarClima(), 10 * 60 * 1000);
   }
 
-  // ===============================
-  // 🌟 FRASE DEL DÍA (API + traducción)
-  // ===============================
   cargarFraseDelDia(): void {
     this.cargandoFrase = true;
     this.errorFrase = false;
 
     this.homeService.getFraseMotivacional().subscribe({
-      next: (fraseTraducida) => {
-        this.fraseDelDia = fraseTraducida;
+      next: frase => {
+        this.fraseDelDia = frase;
         this.cargandoFrase = false;
       },
       error: () => {
@@ -46,42 +46,47 @@ export class HomePage implements OnInit {
     });
   }
 
-  // ===============================
-  // 🌤 CLIMA REAL (geolocalización opcional)
-  // ===============================
   cargarClima(): void {
     this.cargandoClima = true;
 
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        // Si el usuario permite la ubicación:
-        (pos) => {
-          const lat = pos.coords.latitude;
-          const lon = pos.coords.longitude;
-
-          this.homeService.getClimaReal(lat, lon).subscribe({
-            next: (clima) => {
-              this.clima = clima;
-              this.cargandoClima = false;
-            },
-            error: () => {
-              this.clima = { temp: 18, descripcion: "Clima no disponible" };
-              this.cargandoClima = false;
-            }
-          });
-        },
-
-        // Si el usuario NO permite la ubicación:
-        () => {
-          this.clima = { temp: 18, descripcion: "Ubicación no otorgada" };
-          this.cargandoClima = false;
-        }
-      );
-
-    } else {
-      // Navegador no compatible
-      this.clima = { temp: 18, descripcion: "Geolocalización no disponible" };
+    if (!('geolocation' in navigator)) {
+      this.weather = {
+        temp: 18,
+        desc: 'Geolocalización no disponible',
+        icon: '/assets/weather/partly.svg'
+      };
       this.cargandoClima = false;
+      return;
     }
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+
+        this.climate.getWeatherData(lat, lon).subscribe({
+          next: (w) => {
+            this.weather = w;
+            this.cargandoClima = false;
+          },
+          error: () => {
+            this.weather = {
+              temp: 18,
+              desc: 'Clima no disponible',
+              icon: '/assets/weather/partly.svg'
+            };
+            this.cargandoClima = false;
+          }
+        });
+      },
+      () => {
+        this.weather = {
+          temp: 18,
+          desc: 'Ubicación no otorgada',
+          icon: '/assets/weather/partly.svg'
+        };
+        this.cargandoClima = false;
+      }
+    );
   }
 }
