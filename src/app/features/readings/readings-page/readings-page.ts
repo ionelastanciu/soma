@@ -20,47 +20,25 @@ interface Reading {
   styleUrl: './readings-page.css',
 })
 export class ReadingsPage {
+  
   title = 'Lecturas y citas';
 
-  // Buscador de lecturas locales
   search = '';
+  searchBooks = '';
 
   readings: Reading[] = [
-    {
-      id: 1,
-      title: 'Respira: contar hasta cuatro',
-      author: 'SOMA',
-      moodTag: 'Estrés',
-      minutes: 3,
-      favorited: false,
-    },
-    {
-      id: 2,
-      title: 'Aceptar lo que no controlo',
-      author: 'Inspirado en estoicismo',
-      moodTag: 'Ansiedad',
-      minutes: 4,
-      favorited: false,
-    },
-    {
-      id: 3,
-      title: 'Una cosa cada vez',
-      author: 'Mindfulness cotidiano',
-      moodTag: 'Cansancio',
-      minutes: 2,
-      favorited: false,
-    },
-    {
-      id: 4,
-      title: 'Nada dura para siempre',
-      author: 'Memento mori suave',
-      moodTag: 'Tristeza',
-      minutes: 5,
-      favorited: false,
-    },
+    { id: 1, title: 'Respira: contar hasta cuatro', author: 'SOMA', moodTag: 'Estrés', minutes: 3, favorited: false },
+    { id: 2, title: 'Aceptar lo que no controlo', author: 'Inspirado en estoicismo', moodTag: 'Ansiedad', minutes: 4, favorited: false },
+    { id: 3, title: 'Una cosa cada vez', author: 'Mindfulness cotidiano', moodTag: 'Cansancio', minutes: 2, favorited: false },
+    { id: 4, title: 'Nada dura para siempre', author: 'Memento mori suave', moodTag: 'Tristeza', minutes: 5, favorited: false },
   ];
 
-  // ⭐ Favoritos: ahora pasamos el objeto, no el id
+  libros: BookRecommendation[] = [];
+  cargando = false;
+  error = false;
+
+  constructor(private booksService: BooksService) {}
+
   toggleFavorite(r: Reading) {
     r.favorited = !r.favorited;
   }
@@ -68,24 +46,15 @@ export class ReadingsPage {
   get filteredReadings(): Reading[] {
     const term = this.search.trim().toLowerCase();
     if (!term) return this.readings;
-    return this.readings.filter((r) =>
+    return this.readings.filter(r =>
       r.title.toLowerCase().includes(term) ||
       r.author.toLowerCase().includes(term) ||
       r.moodTag.toLowerCase().includes(term)
     );
   }
 
-  // 🔎 Libros recomendados (API)
-  searchBooks = '';
-  libros: BookRecommendation[] = [];
-  cargando = false;
-  error = false;
-
-  constructor(private booksService: BooksService) {}
-
   buscarLibros(): void {
     const term = this.searchBooks.trim();
-
     if (!term) {
       this.libros = [];
       return;
@@ -95,20 +64,18 @@ export class ReadingsPage {
     this.error = false;
 
     this.booksService.buscarLibros(term).subscribe({
-      next: (books) => {
+      next: books => {
         this.libros = books;
         this.cargando = false;
       },
       error: () => {
         this.error = true;
         this.cargando = false;
-      },
+      }
     });
   }
 
   guardarLibro(libro: BookRecommendation): void {
-    // Aquí podrías guardarlo en localStorage, JSON-server, etc.
-    console.log('Libro guardado (por ahora solo en consola):', libro);
     alert(`Libro guardado: ${libro.titulo}`);
   }
 }

@@ -19,7 +19,6 @@
     </div>
   </div>
 
-
   <div class="frase-section">
 
     <h2>✨ Frase del día ✨</h2>
@@ -43,11 +42,7 @@
   </div>
 
   <div class="weather-info" *ngIf="weather">
-    <img
-      [src]="weather.icon"
-      class="weather-icon"
-      [alt]="weather.icon"
-    >
+    <img [src]="weather.icon" class="weather-icon" />
     {{ weather.temp }} °C · {{ weather.desc }}
   </div>
 

@@ -1,6 +1,4 @@
-/* ===========================================================
-   💚 PALETA / VARIABLES GLOBALES SOMA
-   =========================================================== */
+
 
 :root {
   --bg-main: #f4f8f4;
@@ -24,12 +22,10 @@
   --info: #4da3ff;
 
   --border-soft: rgba(0,0,0,0.1);
-  --shadow-soft: rgba(0,0,0,0.08);
+  --shadow-soft: rgba(0, 0, 0, 0.08);
 }
 
-/* ===========================================================
-   BASE
-   =========================================================== */
+
 
 body {
   margin: 0;
@@ -38,9 +34,6 @@ body {
   color: var(--text-main);
 }
 
-/* ===========================================================
-   NAVBAR
-   =========================================================== */
 
 .topbar {
   background: linear-gradient(to right, var(--brand-green), var(--brand-green-light));
@@ -88,9 +81,6 @@ body {
   font-weight: 600;
 }
 
-/* ===========================================================
-   CARD — REFINADA Y UNIFICADA
-   =========================================================== */
 
 .card {
   background: var(--bg-surface);
@@ -103,7 +93,6 @@ body {
   animation: fadeIn 0.45s ease-out both;
 }
 
-/* Tipografía dentro de tarjetas */
 .card h1,
 .card h2 {
   margin-top: 0;
@@ -111,9 +100,6 @@ body {
   font-weight: 600;
 }
 
-/* ===========================================================
-   TIPOGRAFÍA PROFESIONAL
-   =========================================================== */
 
 h1 {
   font-size: 1.9rem;
@@ -145,7 +131,7 @@ p {
   color: var(--text-muted);
 }
 
-/* Labels */
+
 label,
 .label {
   font-size: 0.9rem;
@@ -153,10 +139,6 @@ label,
   font-weight: 500;
   margin-bottom: 4px;
 }
-
-/* ===========================================================
-   INPUTS
-   =========================================================== */
 
 input,
 select,
@@ -179,9 +161,6 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(31,143,73,0.35);
 }
 
-/* ===========================================================
-   BOTONES
-   =========================================================== */
 
 button {
   background: var(--brand-green) !important;
@@ -207,9 +186,6 @@ button.danger:hover {
   background: #ff8585 !important;
 }
 
-/* ===========================================================
-   LECTURAS / LISTAS
-   =========================================================== */
 
 .reading-card {
   background: var(--bg-input);
@@ -221,18 +197,13 @@ button.danger:hover {
   align-items: center;
 }
 
-/* ===========================================================
-   ERRORES
-   =========================================================== */
 
 .error {
   color: var(--danger);
   font-size: 14px;
 }
 
-/* ===========================================================
-   ANIMACIÓN SUAVE
-   =========================================================== */
+
 
 .fade-in {
   animation: fadeIn 0.45s ease-out both;
@@ -241,4 +212,18 @@ button.danger:hover {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+
+.footer {
+  text-align: center;
+  padding: 20px 0 28px;
+  margin-top: 40px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  background: transparent;
+}
+
+.footer strong {
+  color: var(--brand-green);
 }

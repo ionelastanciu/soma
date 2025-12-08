@@ -1,89 +1,73 @@
-
-<section class="card readings-card">
+<section class="card readings-card fade-in">
 
   <h1>Lecturas y citas</h1>
-  <p class="muted">
-    Pequeños textos y frases para acompañar tu estado emocional.
-  </p>
+  <p class="muted">Pequeños textos y frases para acompañar tu estado emocional.</p>
 
   <div class="toolbar">
     <input
       type="text"
       [(ngModel)]="search"
-      placeholder="Buscar por título, autor o estado (estrés, gratitud, calma...)"
       class="input-search"
+      placeholder="Buscar por título, autor o estado…"
     />
 
-    <span class="filter-label" *ngIf="search">
+    <span *ngIf="search" class="filter-label">
       Filtro activo: <strong>{{ search }}</strong>
     </span>
   </div>
 
-  <p class="muted" *ngIf="filteredReadings.length === 0">
+  <p *ngIf="filteredReadings.length === 0" class="muted">
     No hay lecturas que coincidan con tu búsqueda.
   </p>
 
   <ul class="reading-list" *ngIf="filteredReadings.length > 0">
-    <li class="reading-row" *ngFor="let r of filteredReadings" [ngClass]="{ favored: r.favorited }">
+    <li *ngFor="let r of filteredReadings" class="reading-row" [ngClass]="{ favored: r.favorited }">
 
       <div class="meta">
-        <div class="title-line">
-          <strong class="title">{{ r.title }}</strong>
-          <span class="chip">{{ r.moodTag }}</span>
-        </div>
-
-        <div class="sub">
-          <span>{{ r.author }}</span>
-          <span> · {{ r.minutes }} min</span>
-        </div>
+        <strong>{{ r.title }}</strong>
+        <div class="sub">{{ r.author }} · {{ r.minutes }} min</div>
+        <span class="chip">{{ r.moodTag }}</span>
       </div>
 
-      <button type="button" class="fav-btn" (click)="toggleFavorite(r)">
+      <button class="fav-btn" (click)="toggleFavorite(r)">
         {{ r.favorited ? '★ Favorito' : '☆ Guardar' }}
       </button>
+
     </li>
   </ul>
+
 </section>
 
-<section class="card readings-card">
+<section class="card readings-card fade-in">
   <h1>📚 Libros recomendados</h1>
-  <p class="muted">
-    Descubre libros reales según tu búsqueda. Pulsa “Buscar” para ver sugerencias.
-  </p>
+
+  <p class="muted">Escribe algo para recibir sugerencias reales.</p>
 
   <div class="toolbar">
     <input
       type="text"
       [(ngModel)]="searchBooks"
-      placeholder="Buscar libros (ej. ansiedad, calma, autoayuda)"
+      placeholder="Buscar libros..."
       class="input-search"
     />
     <button class="btn-primary" (click)="buscarLibros()">Buscar</button>
   </div>
 
-  <p *ngIf="cargando" class="loading">Buscando libros…</p>
-  <p *ngIf="error" class="error">Error al cargar libros 😢</p>
+  <p *ngIf="cargando">Buscando libros…</p>
+  <p *ngIf="error" class="error">No se pudieron cargar libros.</p>
 
-<ul class="reading-list" *ngIf="libros.length > 0">
-  <li class="reading-row" *ngFor="let b of libros">
+  <ul class="reading-list" *ngIf="libros.length > 0">
+    <li *ngFor="let b of libros" class="reading-row">
 
-    <div class="meta">
-      <strong class="title">{{ b.titulo }}</strong>
-      <div class="sub">{{ b.autor }}</div>
-    </div>
+      <div class="meta">
+        <strong>{{ b.titulo }}</strong>
+        <div class="sub">{{ b.autor }}</div>
+      </div>
 
-    <div *ngIf="b.portada">
-      <img [src]="b.portada" alt="Portada del libro" class="book-cover" />
-    </div>
+      <img *ngIf="b.portada" [src]="b.portada" class="book-cover" />
 
-    <button class="fav-btn" (click)="guardarLibro(b)">
-      ☆ Guardar
-    </button>
+      <button class="fav-btn" (click)="guardarLibro(b)">☆ Guardar</button>
+    </li>
+  </ul>
 
-  </li>
-</ul>
-
-  <p class="muted" *ngIf="!libros.length && !cargando">
-    Escribe algo arriba para empezar la búsqueda.
-  </p>
 </section>

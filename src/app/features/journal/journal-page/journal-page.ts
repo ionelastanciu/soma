@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor, NgClass, DatePipe } from '@angular/common';
-
 import { JournalApiService, DiarioEntry } from '../../../core/journal-api.service';
 import { ShortTextPipe } from '../../../shared/pipes/short-text.pipe';
 
@@ -23,7 +22,6 @@ export class JournalPage implements OnInit {
   text = '';
 
   entries: DiarioEntry[] = [];
-
   showErrors = false;
   cargando = false;
   error = false;
@@ -37,8 +35,8 @@ export class JournalPage implements OnInit {
   loadEntries(): void {
     this.cargando = true;
     this.api.getEntradas().subscribe({
-      next: (data) => {
-        this.entries = data.reverse(); 
+      next: data => {
+        this.entries = data.reverse();
         this.cargando = false;
       },
       error: () => {
@@ -70,9 +68,8 @@ export class JournalPage implements OnInit {
   }
 
   toggleImportant(entry: DiarioEntry): void {
-    this.api.updateEntrada(entry.id!, { important: !entry.important }).subscribe(() => {
-      entry.important = !entry.important;
-    });
+    this.api.updateEntrada(entry.id!, { important: !entry.important })
+      .subscribe(() => entry.important = !entry.important);
   }
 
   removeEntry(id: number): void {

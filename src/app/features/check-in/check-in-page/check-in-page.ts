@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor, DatePipe, NgClass } from '@angular/common';
-
+import { NgIf, NgFor, NgClass, DatePipe } from '@angular/common';
 import { EstadoApiService } from '../../../core/estado-api.service';
 
 @Component({
@@ -25,17 +24,13 @@ export class CheckInPage implements OnInit {
 
   estadoActual: string = '';
   nota: string = '';
-
   mostrarError = false;
+
+  historial: any[] = [];
   cargando = false;
   errorCarga = false;
 
-  historial: any[] = []; 
-
-  constructor(
-    private estadoApi: EstadoApiService
-  ) {}
-
+  constructor(private estadoApi: EstadoApiService) {}
 
   ngOnInit(): void {
     this.cargarHistorial();
@@ -43,10 +38,8 @@ export class CheckInPage implements OnInit {
 
   cargarHistorial(): void {
     this.cargando = true;
-    this.errorCarga = false;
-
     this.estadoApi.getEstados().subscribe({
-      next: (data) => {
+      next: data => {
         this.historial = data.reverse();
         this.cargando = false;
       },
@@ -57,10 +50,7 @@ export class CheckInPage implements OnInit {
     });
   }
 
- 
   registrar(form: any) {
-    this.mostrarError = false;
-
     if (!this.estadoActual) {
       this.mostrarError = true;
       return;
@@ -72,14 +62,13 @@ export class CheckInPage implements OnInit {
       fecha: new Date().toISOString()
     };
 
-
     this.estadoApi.addEstado(nuevoEstado).subscribe({
       next: () => {
-        this.cargarHistorial(); 
+        this.cargarHistorial();
         form.resetForm();
       },
       error: () => {
-        alert("No se pudo guardar el estado en el servidor.");
+        alert("No se pudo guardar el estado.");
       }
     });
   }

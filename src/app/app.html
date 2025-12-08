@@ -10,6 +10,25 @@
   </nav>
 </header>
 
+<button
+  id="audio-unlock"
+  onclick="window.dispatchEvent(new Event('audio-unlock'))"
+  style="
+    width:1px;
+    height:1px;
+    opacity:0;
+    position:absolute;
+    top:0;
+    left:0;
+    pointer-events:auto;
+    z-index:999999;
+  ">
+</button>
+
 <main class="container">
   <router-outlet></router-outlet>
 </main>
+
+<footer class="footer">
+  <p>© 2025 SOMA · Desarrollado por <strong>Ionela Daniela Stanciu</strong></p>
+</footer>

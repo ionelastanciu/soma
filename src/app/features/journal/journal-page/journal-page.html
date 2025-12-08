@@ -1,14 +1,12 @@
-<section class="card journal-card">
-  <h1>Diario emocional</h1>
+<section class="card journal-card fade-in">
 
-  <p class="muted">
-    Escribe con calma cómo te sientes hoy.
-  </p>
+  <h1>Diario emocional</h1>
+  <p class="muted">Escribe con calma cómo te sientes hoy.</p>
 
   <form (ngSubmit)="addEntry()" class="journal-form">
 
     <div class="field">
-      <label class="label">Estado principal de la entrada</label>
+      <label class="label">Estado principal</label>
 
       <select
         [(ngModel)]="mood"
@@ -17,10 +15,12 @@
         [ngClass]="{ 'input-error': showErrors && !mood }"
       >
         <option value="">Seleccionar estado…</option>
-        <option *ngFor="let m of moods" [value]="m">{{ m }}</option>
+        <option *ngFor="let m of moods">{{ m }}</option>
       </select>
 
-      <p class="error" *ngIf="showErrors && !mood">Selecciona un estado emocional.</p>
+      <p *ngIf="showErrors && !mood" class="error">
+        Selecciona un estado emocional.
+      </p>
     </div>
 
     <div class="field">
@@ -34,7 +34,7 @@
         [ngClass]="{ 'input-error': showErrors && !text.trim() }"
       ></textarea>
 
-      <p class="error" *ngIf="showErrors && !text.trim()">
+      <p *ngIf="showErrors && !text.trim()" class="error">
         Escribe algo para guardar la entrada.
       </p>
     </div>
@@ -47,34 +47,41 @@
 
   <hr class="divider" />
 
-  <p class="muted" *ngIf="entries.length === 0">
-    Tu diario está vacío.  
-    Puedes comenzar con algo sencillo:  
+  <p *ngIf="entries.length === 0" class="muted">
+    Tu diario está vacío. Puedes comenzar con algo sencillo:
     <em>“Hoy he decidido escucharme”.</em>
   </p>
 
-  <ul class="journal-list" *ngIf="entries.length > 0">
-    <li *ngFor="let entry of entries" [ngClass]="{ important: entry.important }" class="journal-item">
+  <ul *ngIf="entries.length > 0" class="journal-list">
+    <li *ngFor="let entry of entries" [ngClass]="{ important: entry.important }">
 
       <div class="journal-header">
         <span class="badge">{{ entry.mood }}</span>
         <span class="date">{{ entry.date | date:'short' }}</span>
       </div>
 
-      <p class="journal-text">
-        {{ entry.text | shortText:220 }}
-      </p>
+      <p class="journal-text">{{ entry.text | shortText:220 }}</p>
 
       <div class="actions">
-        <button type="button" class="btn-secondary" (click)="toggleImportant(entry)">
+        <button class="btn-secondary" (click)="toggleImportant(entry)">
           {{ entry.important ? 'Quitar destacado' : 'Marcar importante' }}
         </button>
 
-        <button type="button" class="btn-danger" (click)="removeEntry(entry.id!)">
+        <button class="btn-danger" (click)="removeEntry(entry.id!)">
           Eliminar
         </button>
       </div>
 
     </li>
   </ul>
+  <div class="ambient-sound">
+  <iframe
+    width="0"
+    height="0"
+    src="https://www.youtube.com/embed/1ZYbU82GVz4?autoplay=1&mute=0&loop=1&controls=0&playlist=1ZYbU82GVz4"
+    allow="autoplay"
+    style="display:none;"
+  ></iframe>
+</div>
+
 </section>

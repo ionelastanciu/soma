@@ -49,24 +49,14 @@ export class HomePage implements OnInit {
   cargarClima(): void {
     this.cargandoClima = true;
 
-    if (!('geolocation' in navigator)) {
-      this.weather = {
-        temp: 18,
-        desc: 'Geolocalización no disponible',
-        icon: '/assets/weather/partly.svg'
-      };
-      this.cargandoClima = false;
-      return;
-    }
-
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const lat = pos.coords.latitude;
         const lon = pos.coords.longitude;
 
         this.climate.getWeatherData(lat, lon).subscribe({
-          next: (w) => {
-            this.weather = w;
+          next: weather => {
+            this.weather = weather;
             this.cargandoClima = false;
           },
           error: () => {
