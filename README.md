@@ -1,4 +1,4 @@
-🌿 SOMA — Aplicación Web de Bienestar Emocional
+🌿SOMA — Aplicación Web de Bienestar Emocional🌿
 
 Proyecto final del módulo Desarrollo de Interfaces — 2º DAM (2025)
 Autora: Ionela Daniela Stanciu
@@ -10,7 +10,7 @@ La interfaz está diseñada para ser clara, moderna y agradable, con un modo osc
 
 Este proyecto fue generado utilizando Angular CLI v20.3.6.
 
-✨ Objetivos del proyecto
+Objetivos del proyecto ✨
 
 Facilitar la reflexión emocional diaria.
 
@@ -22,7 +22,7 @@ Simular un entorno cliente–servidor mediante JSON-server.
 
 Aplicar buenas prácticas de Angular, diseño y accesibilidad.
 
-🧠 Funcionalidades principales
+Funcionalidades principales
 1. Inicio
 
 Frase inspiradora del día (se genera aleatoriamente).
@@ -77,7 +77,7 @@ Adaptado totalmente al modo oscuro.
 
 ![Entradas del diario](docs/screenshots/diario.png)
 
-ℹ️ 5. Acerca de SOMA
+5. Acerca de SOMA
 
 Información del proyecto y sus objetivos.
 
@@ -87,7 +87,7 @@ Tarjetas estilizadas coherentes con el diseño general.
 
 ![Pantalla "Acerca de"](docs/screenshots/acerca-de.png)
 
-🌙 Modo oscuro
+Modo oscuro🌙
 
 Modo oscuro completo con ajustes en:
 
@@ -105,8 +105,8 @@ Paleta de colores personalizada
 
 ![Home con el modo claro](docs/screenshots/modo-oscuro.png)
 
-🛠️ Tecnologías utilizadas
-🔧 Frontend
+Tecnologías utilizadas
+Frontend
 
 Angular standalone
 
@@ -120,32 +120,41 @@ Angular Forms
 
 Pipes personalizados
 
-🌐 APIs externas
+APIs externas
 
-Open Library API (libros recomendados)
+Open Library API — Recomendaciones de libros
 
-Open-Meteo API (información del clima)
+Open-Meteo API — Información del clima
 
-🗂️ API local (JSON-server)
+API local (JSON-server)
 
-estados
+Endpoints utilizados:
 
-diario
+/estados
 
-liked
+/diario
+
+/liked
 
 📁 Estructura del proyecto
 src/
+│
 ├── app/
-│   ├── home/
-│   ├── check-in/
-│   ├── readings/         (recomendaciones)
-│   ├── journal/
-│   ├── about/
+│   ├── components/
+│   │   ├── home/
+│   │   ├── check-in/
+│   │   ├── readings/        (recomendaciones)
+│   │   ├── journal/
+│   │   ├── about/
+│   │   └── not-found/
+│   │
+│   ├── services/
 │   └── shared/
-│        └── pipes/
+│       └── pipes/
+│
 ├── assets/
 │   └── weather/
+│
 ├── styles.css
 └── db.json
 
@@ -156,46 +165,72 @@ db.json (servidor local)
   "liked": []
 }
 
-🚀 Cómo ejecutar el proyecto
-Servidor Angular:
+Cómo ejecutar el proyecto
+1. Requisitos previos
+
+Node.js
+
+Angular CLI
+
+JSON-server
+
+2. Instalación
+
+Clonar el repositorio:
+
+git clone https://github.com/ionelastanciu/soma.git
+
+
+Instalar dependencias:
+
+npm install
+
+3. Ejecutar la aplicación
+Servidor Angular
 ng serve
 
-Abrir en el navegador:
+
+Abrir en navegador:
+
 http://localhost:4200/
 
-Servidor JSON-server:
+Servidor JSON-server
 npx json-server --watch db.json --port 3000
 
-API local:
+
+API local disponible en:
+
 http://localhost:3000/
 
 Tests
-Unit tests:
+Unit tests
 ng test
 
-End-to-end tests (si se configuran):
+End-to-end tests (si se configuran)
 ng e2e
 
-Build de producción:
+🏗 Build de producción
 ng build
 
 
-Los archivos finales se generan en dist/.
+Los archivos finales se generan en la carpeta dist/.
 
-📘 Recursos útiles
+Recursos útiles
 
-Angular CLI Docs — https://angular.dev/tools/cli
+Angular CLI — https://angular.dev/tools/cli
 
-JSON-server Docs — https://github.com/typicode/json-server
+JSON-server — https://github.com/typicode/json-server
 
 Open Library API — https://openlibrary.org/developers/api
 
-Open Meteo API — https://open-meteo.com/en/docs
+Open-Meteo API — https://open-meteo.com/en/docs
 
-✒️ Autora
+Autora
+
 Ionela Daniela Stanciu
 2º DAM · IES El Cañaveral
-2025
+Año 2025
 
 🔒 Licencia
+
 Proyecto académico sin fines comerciales.

@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'shortText',
-  standalone: true,
+  standalone: true
 })
 export class ShortTextPipe implements PipeTransform {
   transform(value: string | null | undefined, maxLength: number = 120): string {

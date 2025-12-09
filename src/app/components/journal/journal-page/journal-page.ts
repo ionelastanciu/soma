@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor, NgClass, DatePipe } from '@angular/common';
-import { JournalApiService, DiarioEntry } from '../../../core/journal-api.service';
+import { JournalApiService, DiarioEntry } from '../../../services/journal-api.service';
 import { ShortTextPipe } from '../../../shared/pipes/short-text.pipe';
 
 @Component({

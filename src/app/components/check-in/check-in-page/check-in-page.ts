@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor, NgClass, DatePipe } from '@angular/common';
-import { EstadoApiService } from '../../../core/estado-api.service';
+import { EstadoApiService } from '../../../services/estado-api.service';
 
 @Component({
   selector: 'app-check-in-page',

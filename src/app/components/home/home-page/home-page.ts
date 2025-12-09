@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeService } from '../../../core/home.service';
-import { ClimateService, WeatherInfo } from '../../../core/climate.service';
+import { HomeService } from '../../../services/home.service';
+import { ClimateService, WeatherInfo } from '../../../services/climate.service';
 
 @Component({
   selector: 'app-home-page',

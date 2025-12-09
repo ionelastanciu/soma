@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NgFor, NgIf, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { BooksService, BookRecommendation } from '../../../core/books.service';
-import { FavoriteService } from '../../../core/favorite.service';
+import { BooksService, BookRecommendation } from '../../../services/books.service';
+import { FavoriteService } from '../../../services/favorite.service';
 
 interface Reading {
   id: number;
