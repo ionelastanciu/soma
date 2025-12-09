@@ -120,3 +120,11 @@
   width: 26px;
   height: 26px;
 }
+.hero-content {
+  animation: floatTitle 10s ease-in-out infinite alternate;
+}
+
+@keyframes floatTitle {
+  from { transform: translate(-50%, -48%); }
+  to   { transform: translate(-50%, -52%); }
+}

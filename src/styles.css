@@ -1,4 +1,6 @@
-
+/* ===========================================================
+   🎨 PALETA LUZ — VARIABLES BASE
+   =========================================================== */
 
 :root {
   --bg-main: #f4f8f4;
@@ -22,18 +24,26 @@
   --info: #4da3ff;
 
   --border-soft: rgba(0,0,0,0.1);
-  --shadow-soft: rgba(0, 0, 0, 0.08);
+  --shadow-soft: rgba(0,0,0,0.08);
 }
 
 
+/* ===========================================================
+   🌞 MODO CLARO
+   =========================================================== */
 
 body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
-  background: var(--bg-main);
+  background: linear-gradient(180deg, #f4f8f4, #edf6ef);
   color: var(--text-main);
+  transition: background 0.4s ease, color 0.3s ease;
 }
 
+
+/* ===========================================================
+   🔝 NAVBAR
+   =========================================================== */
 
 .topbar {
   background: linear-gradient(to right, var(--brand-green), var(--brand-green-light));
@@ -82,15 +92,28 @@ body {
 }
 
 
+/* ===========================================================
+   📦 TARJETAS (CARDS)
+   =========================================================== */
+
 .card {
-  background: var(--bg-surface);
-  border-radius: 18px;
-  padding: 28px 26px;
+  border-radius: 22px;
+  padding: 28px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(3px);
   margin: 24px 0;
   box-shadow:
-    0px 2px 6px rgba(0,0,0,0.04),
-    0px 6px 18px rgba(0,0,0,0.08);
+    0px 3px 6px rgba(0,0,0,0.04),
+    0px 10px 24px rgba(0,0,0,0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   animation: fadeIn 0.45s ease-out both;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0px 4px 10px rgba(0,0,0,0.05),
+    0px 8px 20px rgba(0,0,0,0.10);
 }
 
 .card h1,
@@ -101,43 +124,46 @@ body {
 }
 
 
+/* ===========================================================
+   ✏ TIPOGRAFÍA
+   =========================================================== */
+
 h1 {
   font-size: 1.9rem;
   font-weight: 700;
-  margin: 0 0 18px 0;
+  margin-bottom: 18px;
   color: var(--text-main);
 }
 
 h2 {
   font-size: 1.25rem;
   font-weight: 600;
-  margin: 14px 0 10px;
   color: var(--brand-green);
 }
 
 h3 {
   font-size: 1.05rem;
   font-weight: 600;
-  margin: 12px 0 6px;
 }
 
 p {
   line-height: 1.55;
-  margin: 0 0 14px;
 }
 
 .muted {
-  font-size: 0.95rem;
   color: var(--text-muted);
 }
 
+
+/* ===========================================================
+   🧩 FORMULARIOS
+   =========================================================== */
 
 label,
 .label {
   font-size: 0.9rem;
   color: var(--text-muted);
   font-weight: 500;
-  margin-bottom: 4px;
 }
 
 input,
@@ -162,6 +188,10 @@ textarea:focus {
 }
 
 
+/* ===========================================================
+   🔘 BOTONES
+   =========================================================== */
+
 button {
   background: var(--brand-green) !important;
   color: var(--text-light);
@@ -170,7 +200,7 @@ button {
   border-radius: 12px;
   font-size: 16px;
   cursor: pointer;
-  transition: 0.25s ease;
+  transition: background 0.25s ease, transform 0.25s ease;
 }
 
 button:hover {
@@ -187,6 +217,10 @@ button.danger:hover {
 }
 
 
+/* ===========================================================
+   LISTAS / CARDS SECUNDARIAS
+   =========================================================== */
+
 .reading-card {
   background: var(--bg-input);
   border-radius: 12px;
@@ -197,33 +231,96 @@ button.danger:hover {
   align-items: center;
 }
 
-
 .error {
   color: var(--danger);
   font-size: 14px;
 }
 
 
+/* ===========================================================
+   ✨ ANIMACIONES
+   =========================================================== */
 
 .fade-in {
-  animation: fadeIn 0.45s ease-out both;
+  animation: fadein 0.6s ease forwards;
+  opacity: 0;
 }
 
-@keyframes fadeIn {
+@keyframes fadein {
   from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 
-.footer {
-  text-align: center;
+/* ===========================================================
+   🌙 BOTÓN MODO OSCURO
+   =========================================================== */
+
+.night-toggle {
+  background: rgba(255,255,255,0.2) !important;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  transition: 0.25s ease;
+}
+
+.night-toggle:hover {
+  background: rgba(255,255,255,0.35) !important;
+}
+
+
+/* ===========================================================
+   🌑 MODO OSCURO COMPLETO
+   =========================================================== */
+
+body.dark {
+  --bg-main: #0f1a11;
+  --bg-surface: #1a2a1e;
+  --bg-surface-alt: #233628;
+
+  --bg-input: #253b2c;
+  --bg-input-dark: #2e4a36;
+
+  --text-main: #e7f5ec;
+  --text-muted: #a8c3b2;
+  --text-light: #ffffff;
+
+  --brand-green: #42d784;
+  --brand-green-light: #6df0a2;
+  --brand-green-soft: #2e6342;
+
+  --border-soft: rgba(255,255,255,0.1);
+  --shadow-soft: rgba(0,0,0,0.4);
+
+  background: linear-gradient(180deg, #0d1710, #142219);
+  color: var(--text-main);
+}
+
+body.dark .card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+body.dark .menu a {
+  color: #dfffe8;
+}
+
+body.dark .menu a.active {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.25);
+}
+
+body.dark button {
+  background: var(--brand-green) !important;
+  color: #0b140c !important;
+}
+footer, .footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px 0 28px;
-  margin-top: 40px;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  background: transparent;
-}
-
-.footer strong {
-  color: var(--brand-green);
+  width: 100%;
+  text-align: center;
 }

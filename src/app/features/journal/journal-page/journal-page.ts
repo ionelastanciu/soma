@@ -26,6 +26,9 @@ export class JournalPage implements OnInit {
   cargando = false;
   error = false;
 
+  // ⭐ AQUI / ESTÁ SEPARADO / Y BIEN COLOCADO
+  zenMode = false;
+
   constructor(private api: JournalApiService) {}
 
   ngOnInit(): void {
@@ -77,4 +80,5 @@ export class JournalPage implements OnInit {
       this.entries = this.entries.filter(e => e.id !== id);
     });
   }
+
 }

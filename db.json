@@ -7,5 +7,13 @@
       "fecha": "2025-12-08T22:56:46.147Z"
     }
   ],
-  "diario": []
+  "diario": [
+    {
+      "id": "e387",
+      "mood": "Desmotivación",
+      "text": "Hay momentos en los que siento que no puedo más... Seguir adelante se hace demasiado duro.",
+      "date": "2025-12-08T23:34:44.079Z",
+      "important": false
+    }
+  ]
 }

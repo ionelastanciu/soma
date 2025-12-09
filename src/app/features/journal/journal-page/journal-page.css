@@ -1,6 +1,4 @@
-/* ======================================== */
-/* CONTENEDOR GENERAL */
-/* ======================================== */
+
 .journal-card {
   padding: 26px;
   border-radius: 18px;
@@ -8,9 +6,6 @@
   box-shadow: 0 4px 14px rgba(0,0,0,0.06);
 }
 
-/* ======================================== */
-/* FORMULARIO */
-/* ======================================== */
 .journal-form {
   margin-top: 12px;
   display: flex;
@@ -30,7 +25,6 @@
   font-weight: 600;
 }
 
-/* Inputs */
 select,
 textarea {
   padding: 12px;
@@ -49,7 +43,7 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(78,122,95,0.25);
 }
 
-/* Error */
+
 .input-error {
   border: 2px solid #e57373 !important;
   background: #ffecec !important;
@@ -60,7 +54,7 @@ textarea:focus {
   font-size: 0.8rem;
 }
 
-/* Botón principal */
+
 .btn-primary {
   background: #4e7a5f;
   color: white;
@@ -76,7 +70,7 @@ textarea:focus {
   background: #3c634c;
 }
 
-/* Botones secundarios */
+
 .btn-secondary {
   background: #e7f3ec;
   border: 1px solid #8fbda4;
@@ -91,7 +85,7 @@ textarea:focus {
   background: #d6ebdf;
 }
 
-/* Eliminar */
+
 .btn-danger {
   background: #ffdddd;
   border: 1px solid #e99b9b;
@@ -105,9 +99,7 @@ textarea:focus {
   background: #ffcccc;
 }
 
-/* ======================================== */
-/* LISTA DEL DIARIO */
-/* ======================================== */
+
 .journal-list {
   list-style: none;
   padding: 0;
@@ -125,14 +117,14 @@ textarea:focus {
   transition: 0.2s;
 }
 
-/* Tarjeta destacada */
+
 .journal-item.important {
   border-color: #8edbb2;
   background: #ecfff4;
   box-shadow: 0 0 0 2px rgba(142,219,178,0.35);
 }
 
-/* Cabecera */
+
 .journal-header {
   display: flex;
   justify-content: space-between;
@@ -153,7 +145,7 @@ textarea:focus {
   font-size: 0.85rem;
 }
 
-/* Texto */
+
 .journal-text {
   color: #2d3a33;
   font-size: 0.95rem;
@@ -161,8 +153,24 @@ textarea:focus {
   line-height: 1.45;
 }
 
-/* Acciones */
+
 .actions {
   display: flex;
   gap: 10px;
 }
+
+
+body.zen .topbar,
+body.zen .footer {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(-10px);
+  transition: 0.4s ease;
+}
+
+body.zen .container {
+  max-width: 750px;
+  margin-top: 60px;
+  transition: 0.4s ease;
+}
+
