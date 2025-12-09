@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgFor, NgIf, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BooksService, BookRecommendation } from '../../../core/books.service';
+import { FavoriteService } from '../../../core/favorite.service';
 
 interface Reading {
   id: number;
@@ -37,11 +38,10 @@ export class ReadingsPage {
   cargando = false;
   error = false;
 
-  constructor(private booksService: BooksService) {}
-
-  toggleFavorite(r: Reading) {
-    r.favorited = !r.favorited;
-  }
+  constructor(
+    private booksService: BooksService,
+    private favoriteService: FavoriteService
+  ) {}
 
   get filteredReadings(): Reading[] {
     const term = this.search.trim().toLowerCase();
@@ -51,6 +51,18 @@ export class ReadingsPage {
       r.author.toLowerCase().includes(term) ||
       r.moodTag.toLowerCase().includes(term)
     );
+  }
+
+  /** Guardar favorito en db.json */
+  guardarFavorito(r: Reading) {
+    const data = {
+      readingId: r.id,
+      fecha: new Date().toISOString()
+    };
+
+    this.favoriteService.addFavorite(data).subscribe(() => {
+      r.favorited = true;
+    });
   }
 
   buscarLibros(): void {

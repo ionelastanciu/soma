@@ -29,8 +29,12 @@
         <span class="chip">{{ r.moodTag }}</span>
       </div>
 
-      <button class="fav-btn" (click)="toggleFavorite(r)">
-        {{ r.favorited ? '★ Favorito' : '☆ Guardar' }}
+      <button
+        class="favorite-btn"
+        [class.active]="r.favorited"
+        (click)="guardarFavorito(r)"
+      >
+        {{ r.favorited ? '★ Guardado' : '☆ Guardar' }}
       </button>
 
     </li>
@@ -38,6 +42,7 @@
 
 </section>
 
+<!-- BUSCADOR LIBROS -->
 <section class="card readings-card fade-in">
   <h1>📚 Libros recomendados</h1>
 
@@ -66,7 +71,10 @@
 
       <img *ngIf="b.portada" [src]="b.portada" class="book-cover" />
 
-      <button class="fav-btn" (click)="guardarLibro(b)">☆ Guardar</button>
+      <button class="btn-primary" (click)="guardarLibro(b)">
+        Guardar libro
+      </button>
+
     </li>
   </ul>
 

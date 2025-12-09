@@ -5,15 +5,36 @@
       "estado": "Estrés",
       "nota": "",
       "fecha": "2025-12-08T22:56:46.147Z"
+    },
+    {
+      "id": "5c33",
+      "estado": "Cansancio",
+      "nota": "FASDASD",
+      "fecha": "2025-12-09T00:35:23.921Z"
+    },
+    {
+      "id": "37a5",
+      "estado": "Cansancio",
+      "nota": "DSADA",
+      "fecha": "2025-12-09T00:49:35.670Z"
     }
   ],
-  "diario": [
+  "diario": [],
+  "liked": [
     {
-      "id": "e387",
-      "mood": "Desmotivación",
-      "text": "Hay momentos en los que siento que no puedo más... Seguir adelante se hace demasiado duro.",
-      "date": "2025-12-08T23:34:44.079Z",
-      "important": false
+      "id": "92c8",
+      "readingId": 3,
+      "fecha": "2025-12-09T00:28:45.787Z"
+    },
+    {
+      "id": "1b19",
+      "readingId": 3,
+      "fecha": "2025-12-09T00:28:48.810Z"
+    },
+    {
+      "id": "7100",
+      "readingId": 2,
+      "fecha": "2025-12-09T00:28:51.930Z"
     }
   ]
 }

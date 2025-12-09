@@ -145,3 +145,48 @@
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
+.favorite-btn {
+  background: var(--brand-green);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.25s ease;
+}
+
+.favorite-btn:hover {
+  background: var(--brand-green-light);
+  transform: translateY(-2px);
+}
+
+.favorite-btn.active {
+  background: #2c7a48;
+  color: #fffbe6;
+}
+.favorite-btn {
+  background: #1f8f49;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.favorite-btn:hover {
+  background: #34c759;
+}
+
+.favorite-btn.active {
+  background: #34c759 !important;
+  animation: pop 0.25s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.9); }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}

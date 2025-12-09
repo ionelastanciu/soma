@@ -194,13 +194,13 @@ textarea:focus {
 
 button {
   background: var(--brand-green) !important;
-  color: var(--text-light);
+  color: var(--text-light) !important;
   border: none;
   padding: 12px 20px;
   border-radius: 12px;
   font-size: 16px;
   cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s ease;
+  transition: 0.25s ease;
 }
 
 button:hover {
@@ -252,22 +252,17 @@ button.danger:hover {
 }
 
 
-/* ===========================================================
-   🌙 BOTÓN MODO OSCURO
-   =========================================================== */
-
-.night-toggle {
-  background: rgba(255,255,255,0.2) !important;
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 8px 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  color: white;
-  transition: 0.25s ease;
+/* =======================
+   BOTONES EN MODO OSCURO
+   ======================= */
+body.dark button {
+  background: #0d2b18 !important;
+  color: white !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
 }
 
-.night-toggle:hover {
-  background: rgba(255,255,255,0.35) !important;
+body.dark button:hover {
+  background: #144a2b !important;
 }
 
 
@@ -283,8 +278,8 @@ body.dark {
   --bg-input: #253b2c;
   --bg-input-dark: #2e4a36;
 
-  --text-main: #e7f5ec;
-  --text-muted: #a8c3b2;
+  --text-main: #ffffff;   /* ← CAMBIADO */
+  --text-muted: #dceee4;  /* ← CAMBIADO */
   --text-light: #ffffff;
 
   --brand-green: #42d784;
@@ -298,24 +293,43 @@ body.dark {
   color: var(--text-main);
 }
 
-body.dark .card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.08);
+
+/* ===========================================================
+   🌙 MODO OSCURO — AJUSTES
+   =========================================================== */
+
+body.dark .card,
+body.dark .readings-card,
+body.dark .reading-row,
+body.dark .about-box {
+  background: var(--bg-surface) !important;
+  color: var(--text-main) !important;
+  border-color: rgba(255,255,255,0.08) !important;
 }
 
-body.dark .menu a {
-  color: #dfffe8;
+body.dark .sub,
+body.dark .muted {
+  color: var(--text-muted) !important;
 }
 
-body.dark .menu a.active {
-  background: rgba(255,255,255,0.15);
-  border-color: rgba(255,255,255,0.25);
+body.dark .chip {
+  background: rgba(255,255,255,0.12) !important;
+  color: var(--text-main) !important;
 }
 
-body.dark button {
-  background: var(--brand-green) !important;
-  color: #0b140c !important;
+body.dark textarea,
+body.dark input,
+body.dark select {
+  background: var(--bg-surface-alt) !important;
+  color: var(--text-main) !important;
+  border-color: rgba(255,255,255,0.15) !important;
 }
+
+body.dark textarea::placeholder,
+body.dark input::placeholder {
+  color: var(--text-muted) !important;
+}
+
 footer, .footer {
   display: flex;
   justify-content: center;
@@ -323,4 +337,30 @@ footer, .footer {
   padding: 20px 0 28px;
   width: 100%;
   text-align: center;
+}
+
+
+/* ===========================================================
+   🌙 FIX SELECT — EL ARREGLO QUE NECESITABAS
+   =========================================================== */
+
+body.dark select {
+  background: var(--bg-input) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--brand-green-soft) !important;
+}
+
+body.dark select option {
+  background: var(--bg-surface) !important;
+  color: var(--text-main) !important;
+}
+
+body.dark select:focus {
+  border-color: var(--brand-green-light) !important;
+  box-shadow: 0 0 0 3px rgba(66,215,132,0.25) !important;
+}
+
+body.dark .about-card *,
+body.dark .journal-card .journal-text {
+  color: #ffffff !important;
 }
