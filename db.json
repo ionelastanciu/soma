@@ -1,25 +1,21 @@
 {
   "estados": [
     {
-      "id": "9abe",
-      "estado": "Estrés",
-      "nota": "",
-      "fecha": "2025-12-08T22:56:46.147Z"
-    },
-    {
-      "id": "5c33",
-      "estado": "Cansancio",
-      "nota": "FASDASD",
-      "fecha": "2025-12-09T00:35:23.921Z"
-    },
-    {
-      "id": "37a5",
-      "estado": "Cansancio",
-      "nota": "DSADA",
-      "fecha": "2025-12-09T00:49:35.670Z"
+      "id": "ea5e",
+      "estado": "Tranquilidad",
+      "nota": "Trato de mantener un estado de calma. ",
+      "fecha": "2025-12-09T01:39:08.733Z"
     }
   ],
-  "diario": [],
+  "diario": [
+    {
+      "id": "74ec",
+      "mood": "Falta de sueño",
+      "text": "últimamente me cuesta conciliar el sueño.",
+      "date": "2025-12-09T01:48:32.697Z",
+      "important": false
+    }
+  ],
   "liked": [
     {
       "id": "92c8",
@@ -35,6 +31,11 @@
       "id": "7100",
       "readingId": 2,
       "fecha": "2025-12-09T00:28:51.930Z"
+    },
+    {
+      "id": "2a5d",
+      "readingId": 1,
+      "fecha": "2025-12-09T01:42:41.190Z"
     }
   ]
 }

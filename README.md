@@ -1,59 +1,201 @@
-# Soma
+🌿 SOMA — Aplicación Web de Bienestar Emocional
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.6.
+Proyecto final del módulo Desarrollo de Interfaces — 2º DAM (2025)
+Autora: Ionela Daniela Stanciu
 
-## Development server
+SOMA es una aplicación web orientada al autocuidado emocional.
+Permite registrar estados de ánimo, escribir un diario personal, consultar recomendaciones breves, guardar favoritos y acceder tanto a la frase del día como a la meteorología actual.
 
-To start a local development server, run:
+La interfaz está diseñada para ser clara, moderna y agradable, con un modo oscuro completo e integrado.
 
-```bash
+Este proyecto fue generado utilizando Angular CLI v20.3.6.
+
+✨ Objetivos del proyecto
+
+Facilitar la reflexión emocional diaria.
+
+Proporcionar un espacio seguro para registrar pensamientos y emociones.
+
+Ofrecer recomendaciones breves y significativas.
+
+Simular un entorno cliente–servidor mediante JSON-server.
+
+Aplicar buenas prácticas de Angular, diseño y accesibilidad.
+
+🧠 Funcionalidades principales
+1. Inicio
+
+Frase inspiradora del día (se genera aleatoriamente).
+
+Información meteorológica actual mediante Open-Meteo API.
+
+Iconos dinámicos según el clima.
+
+Tarjetas animadas para navegar entre secciones.
+
+![Vista de la pantalla de inicio con clima + frase del día](docs/screenshots/home.png)
+
+2. Check-in emocional
+
+Selección rápida del estado emocional.
+
+Validaciones visuales y mensajes de error.
+
+Datos almacenados en el endpoint estados.
+
+![Formulario de check-in emocional](docs/screenshots/check-in.png)
+
+3. Recomendaciones + Favoritos
+
+Recomendaciones cortas de bienestar (antes “lecturas”).
+
+Opción para guardar y quitar favoritos (persisten en liked).
+
+Buscador real de libros mediante Open Library API.
+
+Animaciones suaves y diseño limpio
+
+![Recomendacionesecomendaciones + favorito marcado](docs/screenshots/recomendation-favorite.png)
+![Resultado de búsqueda de libros](docs/screenshots/libro-emocion.png)Resultado de búsqueda de libros.
+![Búsqueda por autor](docs/screenshots/libro-autor.png)
+Nota: El guardado de libros recomendados no está implementado.
+
+4. Diario emocional
+
+Selección guiada del estado principal.
+
+Área de texto amplia para escribir libremente.
+
+Validaciones completas (estado + entrada).
+
+Almacenamiento en diario con marca temporal automática.
+
+Posibilidad de marcar como “importante”.
+
+Adaptado totalmente al modo oscuro.
+
+
+![Entradas del diario](docs/screenshots/diario.png)
+
+ℹ️ 5. Acerca de SOMA
+
+Información del proyecto y sus objetivos.
+
+Tecnologías empleadas.
+
+Tarjetas estilizadas coherentes con el diseño general.
+
+![Pantalla "Acerca de"](docs/screenshots/acerca-de.png)
+
+🌙 Modo oscuro
+
+Modo oscuro completo con ajustes en:
+
+Tipografías
+
+Botones
+
+Tarjetas
+
+Inputs, selects y placeholders
+
+Iconografía
+
+Paleta de colores personalizada
+
+![Home con el modo claro](docs/screenshots/modo-oscuro.png)
+
+🛠️ Tecnologías utilizadas
+🔧 Frontend
+
+Angular standalone
+
+TypeScript
+
+HTML5
+
+CSS3 con variables (tema claro/oscuro)
+
+Angular Forms
+
+Pipes personalizados
+
+🌐 APIs externas
+
+Open Library API (libros recomendados)
+
+Open-Meteo API (información del clima)
+
+🗂️ API local (JSON-server)
+
+estados
+
+diario
+
+liked
+
+📁 Estructura del proyecto
+src/
+├── app/
+│   ├── home/
+│   ├── check-in/
+│   ├── readings/         (recomendaciones)
+│   ├── journal/
+│   ├── about/
+│   └── shared/
+│        └── pipes/
+├── assets/
+│   └── weather/
+├── styles.css
+└── db.json
+
+db.json (servidor local)
+{
+  "estados": [],
+  "diario": [],
+  "liked": []
+}
+
+🚀 Cómo ejecutar el proyecto
+Servidor Angular:
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abrir en el navegador:
+http://localhost:4200/
 
-## Code scaffolding
+Servidor JSON-server:
+npx json-server --watch db.json --port 3000
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+API local:
+http://localhost:3000/
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
+Tests
+Unit tests:
 ng test
-```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
+End-to-end tests (si se configuran):
 ng e2e
-```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Build de producción:
+ng build
 
-## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Los archivos finales se generan en dist/.
+
+📘 Recursos útiles
+
+Angular CLI Docs — https://angular.dev/tools/cli
+
+JSON-server Docs — https://github.com/typicode/json-server
+
+Open Library API — https://openlibrary.org/developers/api
+
+Open Meteo API — https://open-meteo.com/en/docs
+
+✒️ Autora
+Ionela Daniela Stanciu
+2º DAM · IES El Cañaveral
+2025
+
+🔒 Licencia
+Proyecto académico sin fines comerciales.
